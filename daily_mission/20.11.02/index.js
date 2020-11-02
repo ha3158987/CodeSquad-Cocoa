@@ -1,63 +1,77 @@
 // //[2020.11.02 미션] 다각형의 넓이 구하기
 /*-------------#1. getArea 함수-----------------*/
 //: 다각형의 종류를 변별 후 해당 다각형에 걸맞는 함수를 호출. 주어진 숫자값은 호출 시 인자로 전달.
-function getArea(shape, ...arguments) {
-  console.log("arguments", arguments);
+let result;
+let arrOrder = [];
+
+function getArea(shape, ...givenSize) {
+  console.log("arguments", givenSize);
   //원
   if (shape === "circle") {
-    return getCircle(arguments);
+    return getCircle(...givenSize);
   }
 
   //사각형
   else if (shape === "rect") {
-    return getRectangle(arguments);
+    return getRectangle(...givenSize);
   }
 
   //사다리꼴
   else if (shape === "trapezoid") {
-    return getTrapezoid(arguments);
+    return getTrapezoid(...givenSize);
   }
 }
 
 //원의 넓이
-function getCircle(arguments) {
+function getCircle(...radii) {
+  // arrOrder.push("circle");
   //원의 갯수 > 1 일 때: 반지름의 값 1~n까지의 모든 원 넓이의 합
-  if (arguments.length !== 1) {
-    let max = arguments[1];
-    let arrArea = [];
+  if (radii.length !== 1) {
+    let max = radii[1];
     let sum = 0;
     for (var i = 1; i <= max; i++) {
-      //   arrArea.push(i * i * Math.PI);
       sum += i * i * Math.PI;
     }
-    console.log(sum);
-    return console.log(`반지름 1 ~ n까지의 모든 원 넓이의 합은 ${sum}.`);
+    arrOrder.push({ circle: sum });
+    return sum;
   }
 
   //원의 갯수 === 1 일 때
-  let radius = arguments[0];
-  let square = radius * radius;
+  let square = radii[0] * radii[0];
   let area = Math.PI * square;
-  return console.log(`원의 넓이는 ${area}.`);
+  arrOrder.push({ circle: area });
+  return area;
 }
-console.log(getArea("circle", 5));
-console.log(getArea("circle", 1, 5));
+result = getArea("circle", 5, 3);
+console.log(`원의 넓이/넚이의 합은 ${result}.`);
 
 //사각형의 넓이
-function getRectangle(arguments) {
-  let length = arguments[0];
-  let width = arguments[1];
-  return console.log(`사각형의 넓이는 ${length * width}.`);
+function getRectangle(length, width) {
+  result = length * width;
+  arrOrder.push({ rectangle: result });
+  return result;
 }
-console.log(getArea("rect", 10, 15));
+result = getArea("rect", 10, 15);
+console.log(`사각형의 넓이는 ${result}.`);
 
 //사다리꼴의 넓이
-function getTrapezoid(arguments) {
-  let shortBase = arguments[0];
-  let longBase = arguments[1];
-  let height = arguments[2];
-  return console.log(
-    `사다리꼴의 넓이는 ${((shortBase + longBase) / 2) * height}`
-  );
+function getTrapezoid(shortBase, longBase, height) {
+  result = ((shortBase + longBase) / 2) * height;
+  arrOrder.push({ trapezoid: result });
+  return result;
 }
-console.log(getArea("trapezoid", 10, 15, 12));
+result = getArea("trapezoid", 10, 15, 12);
+console.log(`사다리꼴의 넓이는 ${result}.`);
+
+/*-------------#2 & #3. printExecutionSequence 함수-----------------*/
+//: 호출된 함수의 순서와 긱 함수 실행결과를 보여준다.
+function printExecutionSequence() {
+  // console.log(`계산수행순서는 ${arrOrder}이다.`);
+  let num = 0;
+  for (var i = 0; i < arrOrder.length; i++) {
+    num++;
+    console.log(`${num}.`, arrOrder[i]);
+  }
+}
+
+printExecutionSequence();
