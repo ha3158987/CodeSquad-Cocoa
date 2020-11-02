@@ -66,7 +66,6 @@ console.log(`사다리꼴의 넓이는 ${result}.`);
 /*-------------#2 & #3. printExecutionSequence 함수-----------------*/
 //: 호출된 함수의 순서와 긱 함수 실행결과를 보여준다.
 function printExecutionSequence() {
-  // console.log(`계산수행순서는 ${arrOrder}이다.`);
   let num = 0;
   for (var i = 0; i < arrOrder.length; i++) {
     num++;
