@@ -47,24 +47,24 @@ console.log(`원의 넓이/넚이의 합은 ${result}.`);
 
 //사각형의 넓이
 function getRectangle(length, width) {
-  result = length * width;
-  arrOrder.push({ rectangle: result });
-  return result;
+  let area = length * width;
+  arrOrder.push({ rectangle: area });
+  return area;
 }
 result = getArea("rect", 10, 15);
 console.log(`사각형의 넓이는 ${result}.`);
 
 //사다리꼴의 넓이
 function getTrapezoid(shortBase, longBase, height) {
-  result = ((shortBase + longBase) / 2) * height;
-  arrOrder.push({ trapezoid: result });
-  return result;
+  let area = ((shortBase + longBase) / 2) * height;
+  arrOrder.push({ trapezoid: area });
+  return area;
 }
 result = getArea("trapezoid", 10, 15, 12);
 console.log(`사다리꼴의 넓이는 ${result}.`);
 
 /*-------------#2 & #3. printExecutionSequence 함수-----------------*/
-//: 호출된 함수의 순서와 긱 함수 실행결과를 보여준다.
+//: 호출된 함수의 순서와 각 함수 실행결과를 보여준다.
 function printExecutionSequence() {
   let num = 0;
   for (var i = 0; i < arrOrder.length; i++) {
