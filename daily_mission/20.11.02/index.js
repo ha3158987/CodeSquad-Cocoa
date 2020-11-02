@@ -69,6 +69,7 @@ function printExecutionSequence() {
   let num = 0;
   for (var i = 0; i < arrOrder.length; i++) {
     num++;
+    debugger;
     console.log(`${num}.`, arrOrder[i]);
   }
 }
