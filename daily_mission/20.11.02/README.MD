@@ -1,4 +1,4 @@
-# 2020.11.02 Daily Mission: 다각형의 넓이 구하기
+# 2020.11.02 Daily Mission: 다각형의 넓이 구하기 :triangular_ruler:
 
 ## 1. getArea함수 만들기
 
