@@ -100,7 +100,7 @@ function AvrgOfAllStdt (){};
 
 /*---------------------------#5. 배열 결과 출력 -------------------------------*/
 /* type이 sk인, name으로 구성된 배열만 출력해본다. */
-
+//재귀로 풀기!!! 재귀로 풀어야 다음 미션을 풀 수 있음.
 
 /*---------------------------#6. reduce 만들기.-------------------------------*/
 //Array 의 reduce 메서드처럼 동작하는 myReduce 메서드를 만들자.
@@ -124,14 +124,12 @@ const myReduce = (arr, callback, initialValue) => {
 */
 
 
-
-
 /*-----------------------------------#test cases-------------------------------------------*/
 function testCases () {
     console.log("재귀 factorial 함수:", calculate(5));
     console.log("for문 사용한 filter함수:", filterId(peoples));
     console.log("고차함수 사용한 filter함수:", higherFilterIdFunc(peoples));
-    // console.log(findAvrg(grades));
+    console.log("평균점수 구하기", findAvrg(grades));
 }
 
 testCases();
