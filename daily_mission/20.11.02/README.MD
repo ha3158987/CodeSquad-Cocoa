@@ -36,3 +36,20 @@ printExecutionSequence()  //printExecutionSequence가 불려지면, 함수 호�
 ## 3. printExecutionSequence함수 수정하기
 
 printExecutionSequence함수에 수행순서 뿐만 아니라, 함수의 결과까지 순서대로 같이 출력하는 기능을 만들어보자.
+
+## 4. debugging 기술문서 정리하기
+
+실습 이후에, debugging 방법을 markdown문서로 정리하고, github에 이를 정리해서 올린다.
+
+- breakpoints란
+- watch사용법
+- call stack 의 의미
+- Step over / Step into/ Step out
+
+# 학습 체크포인트 :white_check_mark:
+
+- Node.js를 통해서 JavaScript개발을 할 수 있다
+- 함수의 역할은 한가지에 집중하고 있다.
+- 일관된 변수명과 함수이름을 짓고 있다.
+- 함수는 늘 동일한 입력값에 동일한 출력을 보장한다.
+- 개발과정에서 breakpoint나 'debugger;' 키워드를 사용해서 디버깅을 했다.

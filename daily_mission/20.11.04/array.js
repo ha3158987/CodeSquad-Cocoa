@@ -1,5 +1,5 @@
 //[2020.11.04 미션2] 배열다루기
-/*---------------------------#1. factorial 함수 -------------------------------*/
+/*--------------------------------------------#1. factorial 함수 ----------------------------------------------*/
 /*임의의 숫자(m)를 입력받아 1부터 m까지의 factorial 값을 배열로 담아서 반환하는 함수 만들기*/
 function calculate (num){
 
@@ -11,7 +11,7 @@ function calculate (num){
 }
 
 
-/*---------------------------#2. 배열 거르기 -------------------------------*/
+/*------------------------------------------------#2. 배열 거르기 ------------------------------------------------*/
 /*주어진 사람들 중 아래 조건을 만족하는 사람들로 구성된 배열을 만들어서 반환하는 함수 만들기.
 - 특수기호가 없는 아이디 제외
 - 아이디에서 숫자를 제거
@@ -69,40 +69,64 @@ function higherFilterIdFunc (arrayOfIds) {
     return filteredArr;
 }
 
-/*---------------------------#3. 평균 구하기 -------------------------------*/
-/* 각 학생은 3가지 과목에 대한 점수를 가지고 있다.
-1) 각 학생의 평균점수와
-2) 모든 학생의 최고점수의 평균점수(2)를 출력하라.
-*/
+/*------------------------------------------------------#3. 평균 구하기 -----------------------------------------------*/
+/* 각 학생은 3가지 과목에 대한 점수를 가지고 있다. 각 학생의 평균점수와 모든 학생의 최고점수의 평균점수를 출력하라.*/
 const grades = [[88,76,77], [33,44,44], [90,100,94], [30,44,98]];
-
 const objScore = {};
 
-function findAvrg (arrGrades){
-    const arrAvrgEachStdt = arrGrades.map(findAvrgScoreOfEachStnt);   //map은 배열반환
+// #3. 평균구하기 전체 실행
+function findAverages () {
+    findAvrgScoreOfEachStdt (grades);
+    avrgOfAllStdtBestScore (grades)
+    return objScore;
+}
+
+//1) 각 학생의 평균점수 구하기
+function findAvrgScoreOfEachStdt (arrGrades){
+    const arrAvrgEachStdt = arrGrades.map(findAvrg);
+    objScore["각 학생의 평균점수:"] = arrAvrgEachStdt;
+    return arrAvrgEachStdt;
 };
 
-function findAvrgScoreOfEachStnt (arr){
-    const total = 0;
-    arr.forEach( score => total += score)
+//2) 모든 학생의 최고점수의 평균점수 구하기
+function avrgOfAllStdtBestScore (arrGrades){
+    const arrBestScores = [];
+
+    arrGrades.forEach(function (arr){
+        const gradesOfEachStdt = arr;
+        let bestScore = 0;
+
+        gradesOfEachStdt.forEach(function (score){
+            if (score > bestScore) {
+                bestScore = score;
+            }
+        })
+
+        arrBestScores.push(bestScore);
+    })
+
+    const avrgOfEveryonesBestScore = findAvrg(arrBestScores);
+    objScore["모든 학생의 최고점수의 평균점수"] = avrgOfEveryonesBestScore;
+    return avrgOfEveryonesBestScore;
+};
+
+function findAvrg (arr){
+    let total = 0;
+    arr.forEach(score => {total += score});
 
     const avrgScore = total / arr.length;
     return avrgScore;
 }
 
-function AvrgOfAllStdt (){};
-
-
-
-/*---------------------------#4. 배열 만들기 -------------------------------*/
+/*----------------------------------------------------#4. 배열 만들기 ---------------------------------------------------*/
 /* o.js파일에 주어진 데이터 중에 숫자타입으로만 구성된 요소를 뽑아 배열만들기 */
 
 
-/*---------------------------#5. 배열 결과 출력 -------------------------------*/
+/*---------------------------------------------------#5. 배열 결과 출력 --------------------------------------------------*/
 /* type이 sk인, name으로 구성된 배열만 출력해본다. */
-//재귀로 풀기!!! 재귀로 풀어야 다음 미션을 풀 수 있음.
+// Tip: 재귀로 풀기!!! 재귀로 풀어야 다음 미션을 풀 수 있음.
 
-/*---------------------------#6. reduce 만들기.-------------------------------*/
+/*----------------------------------------------------#6. reduce 만들기.-------------------------------------------------*/
 //Array 의 reduce 메서드처럼 동작하는 myReduce 메서드를 만들자.
 const myReduce = (arr, callback, initialValue) => {
 }
@@ -124,12 +148,14 @@ const myReduce = (arr, callback, initialValue) => {
 */
 
 
-/*-----------------------------------#test cases-------------------------------------------*/
+/*------------------------------------------------------#test cases-----------------------ß------------------------------*/
 function testCases () {
     console.log("재귀 factorial 함수:", calculate(5));
     console.log("for문 사용한 filter함수:", filterId(peoples));
     console.log("고차함수 사용한 filter함수:", higherFilterIdFunc(peoples));
-    console.log("평균점수 구하기", findAvrg(grades));
+    console.log("각 학생의 평균점수:", findAvrgScoreOfEachStdt(grades));
+    console.log("모든 학생의 최고점수의 평균점수:", avrgOfAllStdtBestScore(grades));
+    console.log("평균찾기함수 실행:", findAverages(grades));
 }
 
 testCases();
