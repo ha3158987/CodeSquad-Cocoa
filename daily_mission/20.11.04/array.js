@@ -2,11 +2,9 @@
 /*---------------------------#1. factorial 함수 -------------------------------*/
 /*임의의 숫자(m)를 입력받아 1부터 m까지의 factorial 값을 배열로 담아서 반환하는 함수 만들기*/
 function calculate (num){
-    //num이 1과 같을 때까지 다시 calculate을 호출한다.
-    // num * (num - 1) * (num - 2) * (num - 3)... ex. 5 * (5 - 1) * (5 - 2) * (5 - 3) * (5 - 4)
-    // 5 * 4 * 3 * 2 * 1
+
     if (num === 1) {
-        return 1;       //종료조건
+        return 1;
     }
 
     return calculate(num - 1) * num;
@@ -20,28 +18,30 @@ function calculate (num){
 */
 const peoples = ["crong!@#", "honux5", "sarah#", "hea3d", "zello", "5lucas"];
 const spc = /[~!@#$%^&*()_+|<>?:{}]/;
-const nums = /[0-9]/;
+const nums = /[0-9]/g;
 
 //1) for/while문을 사용한 버전 만들기.
 function filterId (arrayOfId) {
-    const passedIds = arrayOfId.slice();   //깊은 복사
     let idx = 0;
-    while (idx < arrayOfId.length) {
-        let currentId = passedIds[idx];
-        if (spc.test(currentId)) {
-            passedIds.splice(idx, 1);
-        }
+    const unneededEl = [];
 
+    while (idx < arrayOfId.length) {
+        let currentId = arrayOfId[idx];
+        if (spc.test(currentId)) {
+            unneededEl.push(arrayOfId[idx]);
+        }
         idx++;
     }
 
+    for (var j = 0; j < unneededEl.length; j++) {
+        arrayOfId.splice(arrayOfId.indexOf(unneededEl[j]), 1);
+    }
+
     const answerArr = [];
-    for (let value of passedIds){
+    for (let value of arrayOfId){
         for(let i = 0; i < value.length; i++){
             if (nums.test(value[i])) {
-                const temp = value.split("");
-                temp.splice(i, 1);
-                value = temp.join("");
+                value = value.replace(/[0-9]/g, "");
                 answerArr.push(value);
             }
         }
@@ -74,6 +74,23 @@ function higherFilterIdFunc (arrayOfIds) {
 1) 각 학생의 평균점수와
 2) 모든 학생의 최고점수의 평균점수(2)를 출력하라.
 */
+const grades = [[88,76,77], [33,44,44], [90,100,94], [30,44,98]];
+
+const objScore = {};
+
+function findAvrg (arrGrades){
+    const arrAvrgEachStdt = arrGrades.map(findAvrgScoreOfEachStnt);   //map은 배열반환
+};
+
+function findAvrgScoreOfEachStnt (arr){
+    const total = 0;
+    arr.forEach( score => total += score)
+
+    const avrgScore = total / arr.length;
+    return avrgScore;
+}
+
+function AvrgOfAllStdt (){};
 
 
 
@@ -86,11 +103,24 @@ function higherFilterIdFunc (arrayOfIds) {
 
 
 /*---------------------------#6. reduce 만들기.-------------------------------*/
-/* Array 의 reduce 메서드처럼 동작하는 myReduce 메서드를 만들자.
+//Array 의 reduce 메서드처럼 동작하는 myReduce 메서드를 만들자.
 const myReduce = (arr, callback, initialValue) => {
-    //여기에 구현
 }
-const result = myReduce(arr, (next,prev) => {...}, []);
+// const result = myReduce(arr, (next,prev) => {...}, []);
+
+
+/*
+  _.reduce = function (collection, iterator, accumulator) {
+    _.each(collection, function (value) {
+      if (accumulator === undefined) {
+        accumulator = collection[0];
+        return iterator(accumulator, value);
+      }
+
+      accumulator = iterator(accumulator, value);
+    });
+    return accumulator;
+  };
 */
 
 
@@ -98,9 +128,10 @@ const result = myReduce(arr, (next,prev) => {...}, []);
 
 /*-----------------------------------#test cases-------------------------------------------*/
 function testCases () {
-    console.log(calculate(5));
-    console.log(filterId(peoples));
-    console.log(higherFilterIdFunc(peoples));
+    console.log("재귀 factorial 함수:", calculate(5));
+    console.log("for문 사용한 filter함수:", filterId(peoples));
+    console.log("고차함수 사용한 filter함수:", higherFilterIdFunc(peoples));
+    // console.log(findAvrg(grades));
 }
 
 testCases();
