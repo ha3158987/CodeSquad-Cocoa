@@ -24,3 +24,5 @@ const data = {
         "onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
     }
 }
+
+exports.data = data;
