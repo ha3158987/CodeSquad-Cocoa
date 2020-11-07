@@ -127,7 +127,31 @@ function findAvrg (arr){
 const dataFromO = require("./o");
 const o = dataFromO.data;
 
+function findNumTypeElements (obj) {
+    let answerArr = [];
 
+    Object.keys(obj).forEach(function (key){
+        //예외처리
+        if (typeof obj[key] === "number") {
+            answerArr.push(obj[key]);
+            return;
+        }
+
+        const values = Object.values(obj[key]);
+        const numTypeEls = getNumberTypes(values);
+
+        numTypeEls.forEach(function (el){
+            answerArr.push(el);
+        });
+        // ES6문법으로: answerArr = [...answerArr, ...numTypeEls];
+    })
+
+    return answerArr;
+}
+
+function getNumberTypes (arr) {
+    return arr.filter( el => typeof el === "number");
+}
 
 /*---------------------------------------------------#5. 배열 결과 출력 --------------------------------------------------*/
 /* type이 sk인, name으로 구성된 배열만 출력해본다. */
@@ -141,20 +165,6 @@ const myReduce = (arr, callback, initialValue) => {
 // const result = myReduce(arr, (next,prev) => {...}, []);
 
 
-/*
-  _.reduce = function (collection, iterator, accumulator) {
-    _.each(collection, function (value) {
-      if (accumulator === undefined) {
-        accumulator = collection[0];
-        return iterator(accumulator, value);
-      }
-
-      accumulator = iterator(accumulator, value);
-    });
-    return accumulator;
-  };
-*/
-
 
 /*------------------------------------------------------#test cases-----------------------ß------------------------------*/
 function testCases () {
@@ -164,6 +174,7 @@ function testCases () {
     console.log("각 학생의 평균점수:", findAvrgScoreOfEachStdt(grades));
     console.log("모든 학생의 최고점수의 평균점수:", avrgOfAllStdtBestScore(grades));
     console.log("평균찾기함수 실행:", findAverages(grades));
+    console.log("객체에서 숫자타입 요소로만 이루어진 배열만들기:", findNumTypeElements(o))
 }
 
 testCases();
