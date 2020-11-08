@@ -41,6 +41,12 @@ output > ["0", "1", "1", "0", "1", "1", "1", "0", "0", "1", "0", "1", "1", "1", 
 - 자바스크립트로 진법변환하는 방법을 안다.
 - 배열의 순회하고 추가/삭제 하는 방법을 안다.
 
+<br>
+
+## 실행결과
+
+![calcLog result](/20.11.04/calcLog.png)
+
   <br>
   <br>
 
@@ -146,3 +152,9 @@ const result = myReduce(arr, (next,prev) => {...}, []);
 - for,while문을 사용하지 않고 배열을 iteration할 수 있다.
 - reduce 메서드를 직접 만들 수 있다.
 - JavaScript 객체를 iteration하고 객체의 속성에 접근해서 추가/변경할 수 있다.
+
+<br>
+
+## 실행결과
+
+![array result](/20.11.04/array.png)
