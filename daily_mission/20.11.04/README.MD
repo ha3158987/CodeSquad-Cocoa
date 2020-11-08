@@ -1,5 +1,9 @@
 # 2020.11.02 Daily Mission
 
+---
+
+<br>
+
 ## Mission 1. 진수변환기: 2진수 돌아가며 말하기 게임 :hugs: (파일명: calcLog.js)
 
 몇 명의 사람들이 모여서 2진수를 한 글자씩 끊어서 말하는 게임을 진행중이다.
@@ -45,7 +49,7 @@ output > ["0", "1", "1", "0", "1", "1", "1", "0", "0", "1", "0", "1", "1", "1", 
 
 ## 실행결과
 
-![calcLog result](/20.11.04/calcLog.png)
+![calcLog result](/calcLog.png)
 
   <br>
   <br>
@@ -157,4 +161,4 @@ const result = myReduce(arr, (next,prev) => {...}, []);
 
 ## 실행결과
 
-![array result](/20.11.04/array.png)
+![array result](/array.png)
