@@ -154,88 +154,113 @@ function getNumberTypes (arr) {
 - 한 단계 들어갈 때마다 ["type"]의 value를 검사해 "sk" 와 일치하는지 검사한다.
 - obj[type] === "sk" 일 경우, obj["name"] 의 값을 새로운 배열에 담는다.
 */
-let nextChildNodeArr;
-function findSkTypeName (arr) {
-    //자기자신을 호출해야한다.
+// let nextChildNodeArr;
+// function findSkTypeName (arr) {
+//     //자기자신을 호출해야한다.
 
-     //childnode가 있는 경우
-    nextChildNodeArr = arr.filter(hasChildnode);
-    // console.log("nextChildNodeArr!!!!", nextChildNodeArr);
-    if (nextChildNodeArr.length !== 0) {
-    //arr가 리턴되면(childnode가 있으면) 다시 findsktypename(재귀로 호출)
-        typeCheck(nextChildNodeArr);
-        // findSkTypeName(nextChildNodeArr);
-
-
-        // let arr2 = [];
-        // findSkTypeName(arr2)
-    } else {  //여기서 false를 리턴받으면 재귀 종료
-        return;    //종료조건; childArray가 비어있을 때
-    }
-
-    return arrName;
-
-}
-
-//childnode의 value가 빈 배열이 아닌지 검사; 아닐경우(요소가 있을 경우) 재귀함수 실행
-function hasChildnode (obj){
-    //빈배열일 경우(childnode가 없을 경우)
-    if (obj["childnode"].length === 0) {
-        return [];
-    }
-    // findSkTypeName(obj["shildnode"]);
-    return obj["childnode"]; //true 대신 arr를 반환? 있을 경우 childnode array를 반환하고,
-
-}
+//      //childnode가 있는 경우
+//     nextChildNodeArr = arr.filter(hasChildnode);
+//     // console.log("nextChildNodeArr!!!!", nextChildNodeArr);
+//     if (nextChildNodeArr.length !== 0) {
+//     //arr가 리턴되면(childnode가 있으면) 다시 findsktypename(재귀로 호출)
+//         typeCheck(nextChildNodeArr);
+//         findSkTypeName(nextChildNodeArr);
 
 
-//type이 "sk"인지 아닌지 확인
-function typeCheck (arr){
-    arr.forEach(function (obj) {
-        if (obj["type"] === "sk") {
-            getObjName (obj);
-        }
-    })
-}
+//         // let arr2 = [];
+//         // findSkTypeName(arr2)
+//     } else {  //여기서 false를 리턴받으면 재귀 종료
+//         return;    //종료조건; childArray가 비어있을 때
+//     }
 
-//name의 값을 새 배열에 담기
-const arrName = [];
-function getObjName (obj) {
-    arrName.push(obj["name"]);
-}
+//     return arrName;
+
+// }
+
+// //childnode의 value가 빈 배열이 아닌지 검사; 아닐경우(요소가 있을 경우) 재귀함수 실행
+// function hasChildnode (obj){
+//     //빈배열일 경우(childnode가 없을 경우)
+//     if (obj["childnode"].length === 0) {
+//         return [];
+//     }
+//     // findSkTypeName(obj["shildnode"]);
+//     return obj["childnode"]; //true 대신 arr를 반환? 있을 경우 childnode array를 반환하고,
+
+// }
+
+
+// //type이 "sk"인지 아닌지 확인
+// function typeCheck (arr){
+//     arr.forEach(function (obj) {
+//         if (obj["type"] === "sk") {
+//             getObjName (obj);
+//         }
+//     })
+// }
+
+// //name의 값을 새 배열에 담기
+// const arrName = [];
+// function getObjName (obj) {
+//     arrName.push(obj["name"]);
+// };
 
 /*----------------------------------------------------#6. reduce 만들기.-------------------------------------------------*/
 //Array 의 reduce 메서드처럼 동작하는 myReduce 메서드를 만들자.
+const arr = [1, 2, 3, 4, 5];
+
+//내가 만드는 reduce 메소드
 const myReduce = (arr, callback, initialValue) => {
-}
-// const result = myReduce(arr, (next,prev) => {...}, []);
 
+    arr.forEach(function (el){
+        if (initialValue === undefined) {
+            initialValue = el;
+        }
+        initialValue = callback(initialValue, el);
+    })
 
-/*
-  _.reduce = function (collection, iterator, accumulator) {
-    _.each(collection, function (value) {
-      if (accumulator === undefined) {
-        accumulator = collection[0];
-        return iterator(accumulator, value);
-      }
+   return initialValue;
+};
 
-      accumulator = iterator(accumulator, value);
-    });
-    return accumulator;
-  };
-*/
+//만든 reduce 함수 실행결과 result에 담기
+const result = myReduce(arr, (acc, cur) => {
+    acc.push(cur * cur);
+    return acc
+}, []);
+
+//기존 reduce 메소드 사용결과 originalReduceResult에 담기
+let originalReduceResult = arr.reduce((acc, cur) => {
+    acc.push(cur * cur);
+    return acc
+}, []);
 
 
 /*------------------------------------------------------#test cases-----------------------------------------------------*/
 function testCases () {
-    console.log("재귀 factorial 함수:", calculate(5));
-    console.log("for문 사용한 filter함수:", filterId(peoples));
-    console.log("고차함수 사용한 filter함수:", higherFilterIdFunc(peoples));
+    console.log("재귀 factorial 함수:", calculate(5));   //output: 120
+    console.log("for문 사용한 filter함수:", filterId(peoples));   //output: [ 'honux', 'head', 'zello', 'lucas' ]
+    console.log("고차함수 사용한 filter함수:", higherFilterIdFunc(peoples));  //output: [ 'honux', 'head', 'zello', 'lucas' ]
     console.log("각 학생의 평균점수:", findAvrgScoreOfEachStdt(grades));
-    console.log("모든 학생의 최고점수의 평균점수:", avrgOfAllStdtBestScore(grades));
+    /* output:
+    [80.33333333333333, 40.333333333333336, 94.66666666666667, 57.333333333333336]*/
+    console.log("모든 학생의 최고점수의 평균점수:", avrgOfAllStdtBestScore(grades));   //output: 82.5
     console.log("평균찾기함수 실행:", findAverages(grades));
+    /* output:
+    {
+    '각 학생의 평균점수:': [
+        80.33333333333333,
+        40.333333333333336,
+        94.66666666666667,
+        57.333333333333336
+     ],
+    '모든 학생의 최고점수의 평균점수': 82.5
+    }
+    */
     console.log("객체에서 숫자타입 요소로만 이루어진 키값의 배열만들기:", findNumTypeElements(o));
-    console.log("type이 sk인, name으로 구성된 배열만들기:", findSkTypeName(dataTree));
+    /* output:
+    ['width', 'height', 'hOffset', 'vOffset', 'size', 'hOffset', 'vOffset'] */
+    // console.log("type이 sk인, name으로 구성된 배열만들기:", findSkTypeName(dataTree));
+    console.log("array의 reduce 메소드 사용 결과:", originalReduceResult);  //[ 1, 4, 9, 16, 25 ]
+    console.log("내가 만든 reduce 함수 사용 결과:", result);  //[ 1, 4, 9, 16, 25 ]
 }
 
 testCases();
