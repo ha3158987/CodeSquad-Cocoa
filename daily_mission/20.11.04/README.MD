@@ -49,7 +49,7 @@ output > ["0", "1", "1", "0", "1", "1", "1", "0", "0", "1", "0", "1", "1", "1", 
 
 ## 실행결과
 
-![calcLog result](/calcLog.png)
+![calcLog result](calcLog.png)
 
   <br>
   <br>
@@ -161,4 +161,4 @@ const result = myReduce(arr, (next,prev) => {...}, []);
 
 ## 실행결과
 
-![array result](/array.png)
+![array result](array.png)
