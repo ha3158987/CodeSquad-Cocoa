@@ -1,7 +1,7 @@
 //[2020.11.09 미션1] Hashmap으로 연락처목록 만들기
 
 // - 문자열 키와 문자열 값을 저장하는 해시맵 라이브러리를 구현한다.
-// - 고유한 Hash 함수를 정한다.
+// - 고유한 Hash 함수를 정한다 : name 과 phone number 정보를 저장하는 Contact Hash 함수 만들기!
 //   4. get(String) 해당 키와 매치되는 값을 찾아서 리턴한다.
 //   5. isEmpty() 비어있는 맵인지 Bool 결과를 리턴한다.
 //   6. keys() 전체 키 목록을 [String] 배열로 리턴한다.
@@ -11,45 +11,36 @@
 //   10. ES Classes를 활용한 방법으로 구현한다.
 
 //저장소 만들기
-const storageArr = [];
-storageArr.length = 10;   //size는 10  //Array.from 배열이 아닌 타입에 배열메서드를 사용하고 싶을 때 쓸 수 있는 메서드
-// storageArr.forEach( emptyEl =>  emptyEl = []); //map 활용
-for (let i = 0; i < storageArr.length; i++){     //innerArr(이중배열 추가)
-    storageArr[i] = [];
-}
+let storageArr = [];
+storageArr.length = 10;
+storageArr = Array.from(storageArr, el => []);
 
 //constactInfo Class 생성자함수 만들기
 class contactInfo {
     constructor(name, phoneNumber) {
-        this[name] = JSON.stringify(phoneNumber); //문자열로 저장
+        this.name = name;
+        this.phoneNumber = phoneNumber;
     }
 }
 
-//key로 hashcode 구하기
+//key로 hashcode 구하기 (hashcode 반환)
 function getHashCode (key) {
     const ascii = key.split('').map(letter => letter.charCodeAt(0));
     const hashCode = ascii.reduce((cur, prev) => cur + prev);
     return hashCode;
 }
 
-//hashcode로 인덱스 구하기
+//hashcode로 인덱스 구하기 (외부배열 인덱스 반환)
 function convertToIndex (hashCode) {
-   const firstIndex = hashCode % storageArr.length;
-   return firstIndex;
+   return hashCode % storageArr.length;
 }
 
 /* ----------------- 1. put(String key, String value) 키-값을 추가한다. -------------------*/
 function put (name, phoneNumber) {
-    const newInfo = new contactInfo(name, phoneNumber); //새로운 newInfo인스턴스 생성
 
-    //1. 어느 인덱스에 push할 지 hashcode를 먼저 구하기
+    const newInfo = new contactInfo(name, phoneNumber);
     const hashCode = getHashCode(name);
     const idx = convertToIndex(hashCode);
-
-    // console.log("해시코드", hashCode); //590
-    // console.log("idx", idx);  //0
-
-    //2. 저장소에 push
     const innerArr = storageArr[idx];
     innerArr.push(newInfo);
 }
@@ -74,10 +65,22 @@ function remove (key){
 
 /* ----------3. containsKey(String) 해당 키가 존재하는지 판단해서 Bool 결과를 리턴한다.------------ */
 function containsKey (key) {
+    const idx = convertToIndex(getHashCode(key));
+    const innerArr = storageArr[idx];
+    const valueArr = Object.values(innerArr);
 
+    let hasKey;
+    valueArr.forEach(function (elObj){
+
+        for (k in elObj){
+            if (elObj[k] === key){
+                hasKey = true;
+            }
+        }
+    })
+
+   return hasKey === true ? true : false;
 }
-
-
 
 /* -----------------------------------test case---------------------------------------- */
 
@@ -93,6 +96,9 @@ put("Jun", 1022225555);
 console.log("put으로 새로운 contact 추가:", storageArr);
 remove("Hannah");
 console.log("remove로 해당 key(Hannah)에 있는 값 삭제:", storageArr);
+
+console.log("해당 key(Crong)가 존재하는 지 확인:", containsKey("Crong"));
+console.log("해당 key(John)가 존재하는 지 확인:", containsKey("John"));
 }
 
 testCase();

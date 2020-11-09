@@ -14,4 +14,4 @@
 
 ### 2주차
 
-<a href="#" target="_blank">Mission :</a>
+<a href="https://velog.io/@grinding_hannah/TIL-%EC%BD%94%EB%93%9C%EC%8A%A4%EC%BF%BC%EB%93%9C-%EC%BD%94%EC%BD%94%EC%95%84-2%EC%A3%BC%EC%B0%A8-Part-1" target="_blank">Mission 1: 해시맵 구현</a>
