@@ -4,12 +4,12 @@
 // - 고유한 Hash 함수를 정한다 : name 과 phone number 정보를 저장하는 Contact Hash 함수 만들기!
 
 //   <To-do List>
-//   5. isEmpty() 비어있는 맵인지 Bool 결과를 리턴한다.
 //   6. keys() 전체 키 목록을 [String] 배열로 리턴한다.
 //   7. replace(String key, String value) 키-값으로 기존 값을 대체한다.
 //   8. size() 전체 아이템 개수를 리턴한다.   //하나의 entry를 하나의 아이템을 카운트?
 //   9. clear() 전체 맵을 초기화한다.
 
+/* ----------------------- Default setting 및 재사용함수 구현 -----------------------------*/
 //저장소 만들기
 let storageArr = [];
 storageArr.length = 10;
@@ -41,6 +41,7 @@ function getInnerArray (key) {
    return storageArr[index];
 }
 
+
 /* ----------------- 1. put(String key, String value) 키-값을 추가한다. -------------------*/
 function put (name, phoneNumber) {
 
@@ -49,6 +50,7 @@ function put (name, phoneNumber) {
     innerArr.push(newInfo);
 
 }
+
 
 /* ----------------- 2. remove(String key) 해당 키에 있는 값을 삭제한다. -------------------- */
 //키:밸류 를 한쌍으로 같이 삭제
@@ -68,6 +70,7 @@ function remove (key){
     })
 }
 
+
 /* ----------3. containsKey(String) 해당 키가 존재하는지 판단해서 Bool 결과를 리턴한다.------------ */
 function containsKey (key) {
     const innerArr = getInnerArray(key);
@@ -86,6 +89,7 @@ function containsKey (key) {
    return hasKey === true ? true : false;
 }
 
+
 /* --------------------4. get(String) 해당 키와 매치되는 값을 찾아서 리턴한다.--------------------- */
 function get (key) {
     const innerArr = getInnerArray(key);
@@ -99,6 +103,21 @@ function get (key) {
         )
     }
     return searchResult;
+}
+
+
+/* ---------------------5. isEmpty() 비어있는 맵인지 Bool 결과를 리턴한다.----------------------- */
+function isEmpty() {
+    let hasNoContact = true;
+
+    storageArr.forEach(function (innerArr){
+        if (innerArr.length !== 0) {
+            hasNoContact = false;
+            return;
+        }
+    })
+
+    return hasNoContact;
 }
 
 
@@ -124,6 +143,8 @@ console.log("#3. 해당 key(John)가 존재하는 지 확인:", containsKey("Joh
 
 console.log("#4. 해당 key(Beemo)와 매치되는 값을 찾아서 리턴:", get("Beemo"));
 console.log("#4. 해당 key(Gildong)와 매치되는 값을 찾아서 리턴:", get("Gildong"));
+
+console.log("#5. 비어있는 맵인가? ", isEmpty());
 }
 
 testCase();
