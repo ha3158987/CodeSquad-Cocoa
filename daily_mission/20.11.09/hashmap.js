@@ -4,7 +4,6 @@
 // - 고유한 Hash 함수를 정한다 : name 과 phone number 정보를 저장하는 Contact Hash 함수 만들기!
 
 //   <To-do List>
-//   6. keys() 전체 키 목록을 [String] 배열로 리턴한다.
 //   7. replace(String key, String value) 키-값으로 기존 값을 대체한다.
 //   8. size() 전체 아이템 개수를 리턴한다.   //하나의 entry를 하나의 아이템을 카운트?
 //   9. clear() 전체 맵을 초기화한다.
@@ -57,7 +56,7 @@ function put (name, phoneNumber) {
 function remove (key){
     const innerArr = getInnerArray(key);
 
-    innerArr.forEach(function (elObj){   //innderArr에서 동일한 key를 가진 obj(요소)찾기
+    innerArr.forEach(function (elObj){
 
         for (let keyInside in elObj) {
 
@@ -93,12 +92,17 @@ function containsKey (key) {
 /* --------------------4. get(String) 해당 키와 매치되는 값을 찾아서 리턴한다.--------------------- */
 function get (key) {
     const innerArr = getInnerArray(key);
+    let telNum;
 
     let searchResult = `${key}(이)라는 이름을 찾을 수 없습니다.`;
-    if (containsKey(key)) {
+    if (containsKey(key)) {                        //containsKey 재사용
         innerArr.forEach( function (obj) {
             if (obj["name"] === key )
-                searchResult = obj;
+                // searchResult = obj;
+
+                telNum = JSON.stringify(obj["phoneNumber"]);
+                const telNumStr = `0${telNum.slice(0, 2)}-${telNum.slice(2, 6)}-${telNum.slice(6, 10)}`;
+                searchResult = `이름: ${key}, 전화번호: ${telNumStr}`;
             }
         )
     }
@@ -113,7 +117,7 @@ function isEmpty() {
     storageArr.forEach(function (innerArr){
         if (innerArr.length !== 0) {
             hasNoContact = false;
-            return;
+            return;      //요소가 하나라도 발견되면 loop를 탈출
         }
     })
 
@@ -121,30 +125,38 @@ function isEmpty() {
 }
 
 
+/* ---------------------6. keys() 전체 키 목록을 [String] 배열로 리턴한다.----------------------- */
+//map 이나 filter 사용
+function keys () {
+
+}
+
+
+
 /* -----------------------------------test case------------------------------------------ */
 
 function testCase() {
 
-put("Hannah", 1099998888);
-put("Crong", 1011112222);
-put("Beemo", 1033334444);
-put("Rash", 1055556666);
-put("Goody", 1077778888);
-put("Autumn", 1099991111);
-put("Jun", 1022225555);
+    put("Hannah", 1099998888);
+    put("Crong", 1011112222);
+    put("Beemo", 1033334444);
+    put("Rash", 1055556666);
+    put("Goody", 1077778888);
+    put("Autumn", 1099991111);
+    put("Jun", 1022225555);
 
-console.log("#1. put으로 새로운 contact 추가:", storageArr);
+    console.log("#1. put으로 새로운 contact 추가:", storageArr);
 
-remove("Hannah");
-console.log("#2. remove로 해당 key(Hannah)에 있는 값 삭제:", storageArr);
+    remove("Hannah");
+    console.log("#2. remove로 해당 key(Hannah)에 있는 값 삭제:", storageArr);
 
-console.log("#3. 해당 key(Crong)가 존재하는 지 확인:", containsKey("Crong"));
-console.log("#3. 해당 key(John)가 존재하는 지 확인:", containsKey("John"));
+    console.log("#3. 해당 key(Crong)가 존재하는 지 확인:", containsKey("Crong"));
+    console.log("#3. 해당 key(John)가 존재하는 지 확인:", containsKey("John"));
 
-console.log("#4. 해당 key(Beemo)와 매치되는 값을 찾아서 리턴:", get("Beemo"));
-console.log("#4. 해당 key(Gildong)와 매치되는 값을 찾아서 리턴:", get("Gildong"));
+    console.log("#4. 해당 key(Beemo)와 매치되는 값을 찾아서 리턴:", get("Beemo"));
+    console.log("#4. 해당 key(Gildong)와 매치되는 값을 찾아서 리턴:", get("Gildong"));
 
-console.log("#5. 비어있는 맵인가? ", isEmpty());
+    console.log("#5. 비어있는 맵인가? ", isEmpty());
 }
 
 testCase();
