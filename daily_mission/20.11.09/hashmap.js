@@ -75,7 +75,7 @@ function containsKey (key) {
     const innerArr = getInnerArray(key);
     const valueArr = Object.values(innerArr);
 
-    let hasKey;
+    let hasKey = false;
     valueArr.forEach(function (elObj){
 
         for (k in elObj){
@@ -85,7 +85,7 @@ function containsKey (key) {
         }
     })
 
-   return hasKey === true ? true : false;
+   return hasKey
 }
 
 
@@ -97,14 +97,13 @@ function get (key) {
     let searchResult = `${key}(이)라는 이름을 찾을 수 없습니다.`;
     if (containsKey(key)) {                        //containsKey 재사용
         innerArr.forEach( function (obj) {
-            if (obj["name"] === key )
-                // searchResult = obj;
+            if (obj["name"] === key ){
 
                 telNum = JSON.stringify(obj["phoneNumber"]);
                 const telNumStr = `0${telNum.slice(0, 2)}-${telNum.slice(2, 6)}-${telNum.slice(6, 10)}`;
                 searchResult = `이름: ${key}, 전화번호: ${telNumStr}`;
             }
-        )
+        })
     }
     return searchResult;
 }
@@ -128,9 +127,17 @@ function isEmpty() {
 /* ---------------------6. keys() 전체 키 목록을 [String] 배열로 리턴한다.----------------------- */
 //map 이나 filter 사용
 function keys () {
+    let arrKeys = [];
 
+    storageArr.forEach((el, i) =>  {
+        if (el.length > 0) {
+            el.forEach( innerObj => arrKeys.push(innerObj["name"]));
+        }
+        return
+    });
+
+    return arrKeys;
 }
-
 
 
 /* -----------------------------------test case------------------------------------------ */
@@ -157,6 +164,8 @@ function testCase() {
     console.log("#4. 해당 key(Gildong)와 매치되는 값을 찾아서 리턴:", get("Gildong"));
 
     console.log("#5. 비어있는 맵인가? ", isEmpty());
+
+    console.log("#6. 전체 키 목록을 가진 배열 리턴:", keys());
 }
 
 testCase();
