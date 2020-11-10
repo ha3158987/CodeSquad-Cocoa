@@ -4,18 +4,16 @@
 // - 고유한 Hash 함수를 정한다 : name 과 phone number 정보를 저장하는 Contact Hash 함수 만들기!
 
 //   <To-do List>
-//   7. replace(String key, String value) 키-값으로 기존 값을 대체한다.
-//   8. size() 전체 아이템 개수를 리턴한다.   //하나의 entry를 하나의 아이템을 카운트?
-//   9. clear() 전체 맵을 초기화한다.
+//  ES Classes를 활용한 방법 혹은 prototype을 사용한 방법으로 구현한다.
 
-/* ----------------------- Default setting 및 재사용함수 구현 -----------------------------*/
+/* ----------------------- hashcode 생성 및 재사용함수 구현 -----------------------------*/
 //저장소 만들기
 let storageArr = [];
 storageArr.length = 10;
 storageArr = Array.from(storageArr, el => []);
 
 //constactInfo Class 생성자함수 만들기 (#10. ES6 Class 활용)
-class contactInfo {
+class ContactInfo {
     constructor(name, phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -44,7 +42,7 @@ function getInnerArray (key) {
 /* ----------------- 1. put(String key, String value) 키-값을 추가한다. -------------------*/
 function put (name, phoneNumber) {
 
-    const newInfo = new contactInfo(name, phoneNumber);
+    const newInfo = new ContactInfo(name, phoneNumber);
     const innerArr = getInnerArray(name);
     innerArr.push(newInfo);
 
@@ -74,8 +72,8 @@ function remove (key){
 function containsKey (key) {
     const innerArr = getInnerArray(key);
     const valueArr = Object.values(innerArr);
-
     let hasKey = false;
+
     valueArr.forEach(function (elObj){
 
         for (k in elObj){
@@ -93,9 +91,9 @@ function containsKey (key) {
 function get (key) {
     const innerArr = getInnerArray(key);
     let telNum;
-
     let searchResult = `${key}(이)라는 이름을 찾을 수 없습니다.`;
-    if (containsKey(key)) {                        //containsKey 재사용
+
+    if (containsKey(key)) {
         innerArr.forEach( function (obj) {
             if (obj["name"] === key ){
 
@@ -125,7 +123,6 @@ function isEmpty() {
 
 
 /* ---------------------6. keys() 전체 키 목록을 [String] 배열로 리턴한다.----------------------- */
-//map 이나 filter 사용
 function keys () {
     let arrKeys = [];
 
@@ -140,7 +137,42 @@ function keys () {
 }
 
 
-/* -----------------------------------test case------------------------------------------ */
+/* ---------------7. replace(String key, String value) 키-값으로 기존 값을 대체한다.-------------- */
+function replace(name, telephoneNumber) {
+    let innerArr = getInnerArray(name);
+    //key가 같은 오브젝트를 찾으면 새로운 값으로 대체한다.
+    innerArr = innerArr.map(function (innerObj){
+        if (innerObj["name"] === name){
+            innerObj["phoneNumber"] = telephoneNumber;
+        }
+    })
+}
+
+
+/* -----------------------------8. size() 전체 아이템 개수를 리턴한다. -------------------------- */
+function size() {
+    const sum = storageArr.reduce(function (accumulator, currentArr){
+        return accumulator + currentArr.length;
+    }, 0);
+
+    return sum;
+}
+
+
+/* --------------------------------9. clear() 전체 맵을 초기화한다. ---------------------------- */
+function clear() {
+    if (!isEmpty()){
+        //삭제하는 로직
+        storageArr.forEach(function (innerArr) {
+            innerArr.splice(0, innerArr.length);
+        })
+    } else {
+        return "삭제해야 할 데이터가 존재하지 않습니다.";
+    }
+
+}
+
+/* ------------------------------------test case------------------------------------------ */
 
 function testCase() {
 
@@ -166,6 +198,17 @@ function testCase() {
     console.log("#5. 비어있는 맵인가? ", isEmpty());
 
     console.log("#6. 전체 키 목록을 가진 배열 리턴:", keys());
+
+    console.log(`#7. 키-값으로 기존 값 대체하기: {기존 정보: ${get("Goody")}`);
+    replace("Goody", 1098765432);
+    console.log(`#7. 키-값으로 기존 값 대체하기: {바뀐 정보: ${get("Goody")}`);
+
+    console.log("#8. 전체 아이템 개수 리턴:", size());
+
+    console.log("#9. 전체 맵을 초기화하기 - 초기화 전:", storageArr);
+    clear();
+    console.log("#9. 전체 맵을 초기화하기 - 초기화 후:", storageArr);
+    console.log("#9. 맵 초기화 후 다시 초기화 요청:", clear());
 }
 
 testCase();
