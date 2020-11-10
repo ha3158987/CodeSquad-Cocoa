@@ -1,10 +1,8 @@
-//[2020.11.09 미션1] Hashmap으로 연락처목록 만들기
+/*[2020.11.09 미션1] Hashmap으로 연락처목록 만들기
+- 고유한 Hash 함수를 정한다 : name 과 phone number 정보를 저장하는 Contact Hash 함수 만들기!
 
-// - 문자열 키와 문자열 값을 저장하는 해시맵 라이브러리를 구현한다.
-// - 고유한 Hash 함수를 정한다 : name 과 phone number 정보를 저장하는 Contact Hash 함수 만들기!
-
-//   <To-do List>
-//  ES Classes를 활용한 방법 혹은 prototype을 사용한 방법으로 구현한다.
+  <To-do List>
+ ES Classes를 활용한 방법 혹은 prototype을 사용한 방법으로 수정해보기*/
 
 /* ----------------------- hashcode 생성 및 재사용함수 구현 -----------------------------*/
 //저장소 만들기
@@ -183,28 +181,19 @@ function testCase() {
     put("Goody", 1077778888);
     put("Autumn", 1099991111);
     put("Jun", 1022225555);
-
     console.log("#1. put으로 새로운 contact 추가:", storageArr);
-
     remove("Hannah");
     console.log("#2. remove로 해당 key(Hannah)에 있는 값 삭제:", storageArr);
-
     console.log("#3. 해당 key(Crong)가 존재하는 지 확인:", containsKey("Crong"));
     console.log("#3. 해당 key(John)가 존재하는 지 확인:", containsKey("John"));
-
     console.log("#4. 해당 key(Beemo)와 매치되는 값을 찾아서 리턴:", get("Beemo"));
     console.log("#4. 해당 key(Gildong)와 매치되는 값을 찾아서 리턴:", get("Gildong"));
-
     console.log("#5. 비어있는 맵인가? ", isEmpty());
-
     console.log("#6. 전체 키 목록을 가진 배열 리턴:", keys());
-
     console.log(`#7. 키-값으로 기존 값 대체하기: {기존 정보: ${get("Goody")}`);
     replace("Goody", 1098765432);
     console.log(`#7. 키-값으로 기존 값 대체하기: {바뀐 정보: ${get("Goody")}`);
-
     console.log("#8. 전체 아이템 개수 리턴:", size());
-
     console.log("#9. 전체 맵을 초기화하기 - 초기화 전:", storageArr);
     clear();
     console.log("#9. 전체 맵을 초기화하기 - 초기화 후:", storageArr);
