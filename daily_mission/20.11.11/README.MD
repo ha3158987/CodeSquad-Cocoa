@@ -122,3 +122,5 @@ const data = "[1]"
 <br>
 
 ## 실행결과
+
+![parenthesis result](parenthesis.png)
