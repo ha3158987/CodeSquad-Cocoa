@@ -3,19 +3,20 @@
 
 const data1 = "[1,2,[3,4,[5,[6]]]]";
 const data2 = "[2, 4, 8, 10, [12, 14, [16, 18]], 20, 22, [24, 26]]";
-const data3 = "[1,2,[3,4,[5,[6]]";    //괄호매칭이 되지 않음
+const data3 = "[1,2,[3,4,[5,[6]]";    //괄호매칭이 되지 않는 예시
 
 /*----------------- 1 & 2. 객체 분석정보 출력하기 & 괄호매칭에 문제가 있는 경우 오류내용 출력 ---------------------*/
 
 //두자리 이상의 수를 정상변환 해주는 함수
-function chgDigits (arr) {
+function changeDigits (arr) {
     const chgedArr = [];
     let tempArr = [];
 
     arr.forEach(function (el) {
         if (Number.isInteger(el * 1) && el !== " ") {
             tempArr.push(el);
-        } else if (isNaN(el * 1)) {
+        }
+        else if (isNaN(el * 1)) {
             const num = tempArr.join("")
             if (num !== "") {
                 chgedArr.push(num);
@@ -34,10 +35,12 @@ function countDepth (arr) {
     arr.forEach(function (e) {
         if (e === "["){
             countBracketPair++;
+
             if (countBracketPair > depth) {
                 depth = countBracketPair;
             }
-        } else if (e === "]"){
+        }
+        else if (e === "]"){
             countBracketPair--;
         }
     })
@@ -53,14 +56,14 @@ function countDepth (arr) {
 
 function run (dataStr) {
     const dataArr = dataStr.split("");   //배열 형태로 바꾸가  ['[', '1', ',', '2', ',', '[', '3', ',', '4', ',', '[', '5', ',', '[', '6', ']', ']', ']', ']']
-    let numOfDepth; //깊이 세어보기
+    let numOfDepth;
     try {
         numOfDepth = countDepth(dataArr);
     } catch (errorMsg) {
         return errorMsg;
     }
 
-    const numOfEl = chgDigits(dataArr).length; //원소 수 세기  ['2', '4', '8', '10', '12', '14', '16', '18', '20', '22', '24', '26'] //Array.flat
+    const numOfEl = changeDigits(dataArr).length; //원소 수 세기  ['2', '4', '8', '10', '12', '14', '16', '18', '20', '22', '24', '26'] //Array.flat
     const normalArr = eval(dataStr);   //[ 1, 2, [ 3, 4, [ 5, [6]]]] 문자열을 자바스크립트 코드로 인식.
     const objTree = makeDataTree(normalArr, dataTree); //객체 형태로 만들기
 
@@ -69,38 +72,56 @@ function run (dataStr) {
 }
 
 /*-------------------------------- 3. 배열 분석정보 tree 형태로 만들기 ---------------------------------------*/
-//재귀 사용해야 할 듯. 어디서부터 재귀를 사용할 것인가.
 
 let dataTree = {
     type : "root",
     child : []
 }
-//const data1 = "[1,2,[3,4,[5,[6]]]]";
+
 function makeDataTree (arr, obj){
-    let newObj = {};
-    newObj["type"] = "array";
-    newObj["child"] = [];
+    let newObj = makeNewArrayObject();
 
     arr.forEach(function (el) {
-        //el은 배열이거나 숫자이거나 둘 중 하나
-        let childObj = {};
+        let childObj;
 
-        if (Array.isArray(el)){  //배열인경우
-            childObj["type"] = "array";
-            childObj["child"] = [];
-            makeDataTree (el, newObj);
-        } else { //숫자인경우
-            childObj["type"] = "number";
-            childObj["value"] = el;
-            childObj["child"] = [];
+        //el은 배열이거나 숫자이거나 둘 중 하나
+        if (isArray(el)){
+            childObj = makeNewArrayObject();
+            makeDataTree (el, newObj); //재귀호출
+        }
+        else {
+            childObj = makeNewNumberObject();
         }
         newObj["child"].push(childObj);
     })
-    obj["child"].push(newObj);
 
+    obj["child"].push(newObj);
     return obj;
 }
 
+
+function isArray (data) {
+    return Array.isArray(data) ? true : false;
+}
+
+
+function makeNewArrayObject () {
+    let newInnerObj = {
+        type = "array",
+        child = []
+    }
+    return newInnerObj;
+}
+
+
+function makeNewNumberObject () {
+    let newInnerObj = {
+        type = "number",
+        value = el,
+        child = []
+    }
+    return newInnerObj;
+}
 
 /*------------------------------------------- test case ------------------------------------------------*/
 
