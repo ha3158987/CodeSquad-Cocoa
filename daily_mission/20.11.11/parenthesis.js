@@ -53,24 +53,6 @@ function countDepth (arr) {
     return depth;
 }
 
-
-function run (dataStr) {
-    const dataArr = dataStr.split("");   //배열 형태로 바꾸가  ['[', '1', ',', '2', ',', '[', '3', ',', '4', ',', '[', '5', ',', '[', '6', ']', ']', ']', ']']
-    let numOfDepth;
-    try {
-        numOfDepth = countDepth(dataArr);
-    } catch (errorMsg) {
-        return errorMsg;
-    }
-
-    const numOfEl = changeDigits(dataArr).length; //원소 수 세기  ['2', '4', '8', '10', '12', '14', '16', '18', '20', '22', '24', '26'] //Array.flat
-    const normalArr = eval(dataStr);   //[ 1, 2, [ 3, 4, [ 5, [6]]]] 문자열을 자바스크립트 코드로 인식.
-    const objTree = makeDataTree(normalArr, dataTree); //객체 형태로 만들기
-
-    console.log("input 데이터 객체구조로 변환:", objTree);
-    return `깊이 수준은 ${numOfDepth}이며, 총 ${numOfEl}개의 원소가 포함되어 있습니다.`;
-}
-
 /*-------------------------------- 3. 배열 분석정보 tree 형태로 만들기 ---------------------------------------*/
 
 let dataTree = {
@@ -123,7 +105,25 @@ function makeNewNumberObject () {
     return newInnerObj;
 }
 
-/*------------------------------------------- test case ------------------------------------------------*/
+/*------------------------------------------- run 함수 & test case ------------------------------------------------*/
+
+function run (dataStr) {
+    const dataArr = dataStr.split("");   //배열 형태로 바꾸가  ['[', '1', ',', '2', ',', '[', '3', ',', '4', ',', '[', '5', ',', '[', '6', ']', ']', ']', ']']
+    let numOfDepth;
+    try {
+        numOfDepth = countDepth(dataArr);
+    } catch (errorMsg) {
+        return errorMsg;
+    }
+
+    const numOfElements = changeDigits(dataArr).length; //원소 수 세기  ['2', '4', '8', '10', '12', '14', '16', '18', '20', '22', '24', '26'] //Array.flat
+    const normalArr = eval(dataStr);   //[ 1, 2, [ 3, 4, [ 5, [6]]]] 문자열을 자바스크립트 코드로 인식.
+    const objTree = makeDataTree(normalArr, dataTree); //객체 형태로 만들기
+
+    console.log("input 데이터 객체구조로 변환:", objTree);
+    return `깊이 수준은 ${numOfDepth}이며, 총 ${numOfElements}개의 원소가 포함되어 있습니다.`;
+}
+
 
 console.log(`data1: ${run(data1)}`);
 console.log(`data2: ${run(data2)}`);
