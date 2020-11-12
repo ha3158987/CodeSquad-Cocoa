@@ -34,7 +34,9 @@ function countDepth (arr) {
     arr.forEach(function (e) {
         if (e === "["){
             countBracketPair++;
-            depth++;
+            if (countBracketPair > depth) {
+                depth = countBracketPair;
+            }
         } else if (e === "]"){
             countBracketPair--;
         }
@@ -73,7 +75,7 @@ let dataTree = {
     type : "root",
     child : []
 }
-
+//const data1 = "[1,2,[3,4,[5,[6]]]]";
 function makeDataTree (arr, obj){
     let newObj = {};
     newObj["type"] = "array";
