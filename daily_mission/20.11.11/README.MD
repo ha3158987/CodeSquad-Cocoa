@@ -123,4 +123,6 @@ const data = "[1]"
 
 ## 실행결과
 
-![parenthesis result](parenthesis.png)
+![data1 result](data1.png)
+![data2 result](data2.png)
+![data3 result](data3.png)

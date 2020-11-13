@@ -29,8 +29,8 @@ function changeDigits (arr) {
 
 //배열의 깊이를 카운트하는 함수
 function countDepth (arr) {
-    let countBracketPair = 0; //'['면 ++, ']'면 --
-    let depth = 0; //'['의 숫자만큼 ++; 반환시에는 countBracketPair가 0일때만 반환(아닐 경우 오류내용 출력).
+    let countBracketPair = 0;
+    let depth = 0;
 
     arr.forEach(function (e) {
         if (e === "["){
@@ -66,13 +66,12 @@ function makeDataTree (arr, obj){
     arr.forEach(function (el) {
         let childObj;
 
-        //el은 배열이거나 숫자이거나 둘 중 하나
         if (isArray(el)){
             childObj = makeNewArrayObject();
-            makeDataTree (el, newObj); //재귀호출
+            makeDataTree (el, newObj);
         }
         else {
-            childObj = makeNewNumberObject();
+            childObj = makeNewNumberObject(el);
         }
         newObj["child"].push(childObj);
     })
@@ -89,18 +88,18 @@ function isArray (data) {
 
 function makeNewArrayObject () {
     let newInnerObj = {
-        type = "array",
-        child = []
+        type : "array",
+        child : []
     }
     return newInnerObj;
 }
 
 
-function makeNewNumberObject () {
+function makeNewNumberObject (number) {
     let newInnerObj = {
-        type = "number",
-        value = el,
-        child = []
+        type : "number",
+        value : number,
+        child : []
     }
     return newInnerObj;
 }
@@ -108,21 +107,30 @@ function makeNewNumberObject () {
 /*------------------------------------------- run 함수 & test case ------------------------------------------------*/
 
 function run (dataStr) {
-    const dataArr = dataStr.split("");   //배열 형태로 바꾸가  ['[', '1', ',', '2', ',', '[', '3', ',', '4', ',', '[', '5', ',', '[', '6', ']', ']', ']', ']']
+    const dataArr = dataStr.split("");
     let numOfDepth;
+
     try {
         numOfDepth = countDepth(dataArr);
     } catch (errorMsg) {
         return errorMsg;
     }
 
-    const numOfElements = changeDigits(dataArr).length; //원소 수 세기  ['2', '4', '8', '10', '12', '14', '16', '18', '20', '22', '24', '26'] //Array.flat
-    const normalArr = eval(dataStr);   //[ 1, 2, [ 3, 4, [ 5, [6]]]] 문자열을 자바스크립트 코드로 인식.
-    const objTree = makeDataTree(normalArr, dataTree); //객체 형태로 만들기
+    const numOfElements = changeDigits(dataArr).length;
+    const normalArr = eval(dataStr);
+    const objTree = makeDataTree(normalArr, dataTree);
 
+    return printAnswerInfo (numOfDepth, numOfElements, dataStr, objTree);
+}
+
+function printAnswerInfo (numOfDepth, numOfElements, dataStr, objTree){
+    let returnMessage;
+    returnMessage = `깊이 수준은 ${numOfDepth}이며, 총 ${numOfElements}개의 원소가 포함되어 있습니다.`
+    console.log (returnMessage);
+    console.log(`input 데이터: ${dataStr}`);
     console.log("input 데이터 객체구조로 변환:");
     console.dir(objTree, { depth: null });
-    return `깊이 수준은 ${numOfDepth}이며, 총 ${numOfElements}개의 원소가 포함되어 있습니다.`;
+    return returnMessage;
 }
 
 console.log(`data1: ${run(data1)}`);
