@@ -120,10 +120,10 @@ function run (dataStr) {
     const normalArr = eval(dataStr);   //[ 1, 2, [ 3, 4, [ 5, [6]]]] 문자열을 자바스크립트 코드로 인식.
     const objTree = makeDataTree(normalArr, dataTree); //객체 형태로 만들기
 
-    console.log("input 데이터 객체구조로 변환:", objTree);
+    console.log("input 데이터 객체구조로 변환:");
+    console.dir(objTree, { depth: null });
     return `깊이 수준은 ${numOfDepth}이며, 총 ${numOfElements}개의 원소가 포함되어 있습니다.`;
 }
-
 
 console.log(`data1: ${run(data1)}`);
 console.log(`data2: ${run(data2)}`);
