@@ -52,6 +52,23 @@ function solution(numbers) {
 
 //----------------------------------------2016년------------------------------------------
 
+let dayArr = ["FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU"];
+let numOfDates = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function solution(a, b) {
+    let answer;
+    let sumOfDates = 0;
+
+    for (let i = 0; i < a - 1; i++){
+        //그 전달까지 배열에서 인덱스 기준으로 누적하고 해당 달은 b를 더해줌.
+        sumOfDates += numOfDates[i];
+    }
+    sumOfDates += b;
+
+    let leftOver = (sumOfDates % 7 === 0) ? 6 : (sumOfDates % 7) - 1;
+    answer = dayArr[leftOver];
+    return answer;
+}
 
 //----------------------------------------약수의 합-----------------------------------------
 function solution(n) {
