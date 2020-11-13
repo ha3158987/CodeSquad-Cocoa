@@ -13,7 +13,7 @@
 
 <br>
 
-## Week 1
+## Week 2
 
 1. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/12910" target="_blank">나누어 떨어지는 숫자 배열</a>
 2. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/68644" target="_blank">두 개 뽑아서 더하기</a>
