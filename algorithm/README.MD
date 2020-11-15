@@ -4,12 +4,12 @@
 
 ## Week 1
 
-1. 백준 알고리즘 1000번: A+B
-2. 백준 알고리즘 1008번: A/B
-3. 백준 알고리즘 2438번: 별 찍기 - 1
-4. 백준 알고리즘 2920번: 음계
-5. 백준 알고리즘 8958번: OX퀴즈
-6. 백준 알고리즘 11654번: 아스키 코드
+1. 백준 알고리즘 1000번: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week1/1000.js" target="_blank">A+B</a>
+2. 백준 알고리즘 1008번: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week1/1008.js" target="_blank">A/B</a>
+3. 백준 알고리즘 2438번: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week1/2438.js" target="_blank">별 찍기 - 1</a>
+4. 백준 알고리즘 2920번: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week1/2920.js" target="_blank">음계</a>
+5. 백준 알고리즘 8958번: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week1/8958.js" target="_blank">X퀴즈</a>
+6. 백준 알고리즘 11654번: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week1/11654.js" target="_blank">아스키 코드</a>
 
 <br>
 
