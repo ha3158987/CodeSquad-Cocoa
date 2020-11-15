@@ -15,6 +15,8 @@
 
 ## Week 2
 
+파일명: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week2/algorithm_11_13.js" target="_blank">algorithm_11_13.js<a>
+
 1. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/12910" target="_blank">나누어 떨어지는 숫자 배열</a>
 2. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/68644" target="_blank">두 개 뽑아서 더하기</a>
 3. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/12901" target="_blank">2016년</a>
