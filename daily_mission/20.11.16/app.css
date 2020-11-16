@@ -1,21 +1,67 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #555; /*웹페이지 전체 font 컬러*/
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
 }
 
 header {
   background-color: #feca57;
   color: #636e72;
-  padding: 1rem;
-  text-align: center;
+  padding: 3rem;
 }
 
-#main {
-  margin-top: 2rem;
+h1 {
+  font-size: 240%;
+}
+
+h1,
+h2 {
+  font-weight: 100;
+}
+
+h2::after {
+  display: block;
+  height: 1px;
+  background-color: #e58e26;
+  content: " ";
+  width: 150px;
+  margin: 0 auto; /* 센터링하기 */
+  margin-top: 10px; /* h2랑 line 사이의 간격 */
+  margin-bottom: 10px;
+}
+
+.button:link,
+.button:visited {
+  text-decoration: none;
+  padding: 0.4rem 30px;
+  background-color: #fff;
+  color: #636e72;
+  border: 1.5px solid #feca57;
+  border-radius: 7px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.button:hover,
+.button:active {
+  background-color: #feca57;
+  border: 1.5px solid #feca57;
+  color: #e58e26;
+}
+
+#fill_out {
+  margin-top: 3rem;
 }
 
 #my_form {
-  width: 400px;
+  width: 800px;
   margin: 0px auto; /* 위아래가 0px, 좌우는 auto */
   border: 1px solid rgb(163, 160, 160); /* 요소 크기를 볼 수 있게 임시로 보더에 색 지정 */
   text-align: center;
@@ -23,12 +69,44 @@ header {
 }
 
 input {
-  width: 80%;
-  margin: 0.5rem;
-  padding: 0.2rem;
+  width: 50%;
+  margin: 0.6rem 1rem;
+  padding: 0.7rem;
+  border: 1px solid rgb(163, 160, 160);
+  border-radius: 5px;
 }
 
-input[type="submit"] {
+#list_out {
+  width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: justify;
+}
+
+.item_container {
+  text-align: center;
+  font-size: 22px;
+  border: 1px solid rgb(163, 160, 160);
+}
+
+.new_item {
+  display: inline;
+  width: 15rem;
+  height: 1.5rem;
+}
+
+ion-icon {
+  font-size: 30px;
+  margin-left: 15rem;
+  margin-top: 3rem;
+  color: #e58e26;
+}
+
+/* input[type="submit"] {
   background-color: bisque;
   color: rgb(163, 160, 160);
-}
+} */
+
+/* .invisible {
+  display: none;
+} */

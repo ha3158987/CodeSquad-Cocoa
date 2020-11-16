@@ -1,24 +1,38 @@
-<!--form 태그
-input 태그 * 2개 (1, 2 input text 타입의 value가 "동일한지" 확인) JavaScript 유효성을 검증-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="app.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My To-do List</title>
 </head>
 <body>
     <header>
-        <h1>Welcome, fill out your To-do List</h1>
+        <h1>WELCOME TO YOUR TO-DO LIST PAGE !</h1>
     </header>
-    <div id="main">
+    <section id="fill_out">
         <form action="" id="my_form">
-            <input type="text" name="first_name" placeholder="이름을 입력하세요"/>
-            <input type="text" name="second_name" placeholder="동일한 아이디를 입력하세요"/>
-            <input type="submit" value="제출"/>
+            <h2>Fill out your To-do list here:</h2>
+            <input class="task_text" type="text" name="description" placeholder="할 일을 입력하세요."/>
+            <a class="button" href="#">Add</a>
         </form>
-    </div>
+    </section>
+    <section id="list_out">
+        <div class="item_container">
+            <ul id="tasks">
+            <!--여기서부터는 동적으로 추가-->
+                <!-- <li class="list">
+                    <input class="new_item" type="checkbox">
+                    task text
+                    <ion-icon name="trash-outline"></ion-icon>
+                </li> -->
+
+            </ul>
+        </div>
+    </section>
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 </body>
 </html>
