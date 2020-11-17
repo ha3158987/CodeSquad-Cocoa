@@ -35,3 +35,10 @@
 - DOM 노드를 탐색하고, 추가하는 API를 안다.
 - Event를 등록하고 Event listener 등록할 수 있다.
 - 객체를 2개이상 나누고 이를 서로 연관지어 프로그램을 구현할 수 있다.
+
+<br>
+
+## 실행결과
+
+<a href="https://codepen.io/letsBeCodeGenius/pen/bGeJpzM" target="_blank">코드펜에서 직접 실행해보기</a>
+![web to-do result](webtodo.png)
