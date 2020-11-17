@@ -8,17 +8,16 @@ class modelController {
     constructor () {
     }
 
-    init = function () {
+    init() {
         this.addEvent();
     }
 
-    addEvent = function () {
+    addEvent() {
         const button = document.querySelector(".button");
-        console.log("this", this);
-        button.addEventListener('click', this.makeNewLi);
+        button.addEventListener('click', this.makeNewLi.bind(this));
     }
 
-    makeNewLi = function () { //li tag 만들기
+    makeNewLi() { //li tag 만들기
         const newItem = document.createElement('li');
         newItem.classList.add("list");
 
@@ -37,10 +36,11 @@ class modelController {
         newItem.appendChild(trashIcon);
 
         console.log("newItem", newItem);
+        console.log("this", this);
         this.addNewLi(newItem);
     }
 
-    addNewLi = function (newLi) {
+    addNewLi(newLi) {
         const parentNode = document.getElementById("tasks");
         parentNode.appendChild(newLi);
     }

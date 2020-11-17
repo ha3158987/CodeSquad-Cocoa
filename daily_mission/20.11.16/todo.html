@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="todo.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-do List</title>
+</head>
+<body>
+    <header>
+        <h1>WELCOME TO YOUR TO-DO LIST PAGE !</h1>
+    </header>
+    <section id="list_out">
+        <div class="item_container">
+            <form class="js-toDoForm">
+                <h2>Fill out your To-do list here:</h2>
+                <input type="text" placeholder="할 일을 입력하세요."/>
+                <a class="button" href="#">Add</a>
+            </form>
+            <ul class="js-toDoList">
+                <div class="new_item"></div>
+                <!--<li id="1">
+                        <input type="checkbox">
+                        <span>text</span>
+                        <button>
+                            <ion icon>
+                        </button>
+                    </li> : 만들 것-->
+                </div>
+            </ul>
+        </div>
+    </section>
+    <script src="todo.js"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+</body>
+</html>
