@@ -1,4 +1,4 @@
-//ES Class 사용하기
+//ES Class 사용 ver. - 만드는 중...
 
 /************************************1st module: todolist를 처리하는 Model Class*****************************/
 //1. 아이템 추가 (input 데이터가 계속 추가되기 때문에 생성자함수를 쓰기)
@@ -14,6 +14,7 @@ class modelController {
 
     addEvent = function () {
         const button = document.querySelector(".button");
+        console.log("this", this);
         button.addEventListener('click', this.makeNewLi);
     }
 
@@ -35,7 +36,8 @@ class modelController {
         trashIcon.name = "trash-outline";
         newItem.appendChild(trashIcon);
 
-        this.addNewLi(this.newItem);
+        console.log("newItem", newItem);
+        this.addNewLi(newItem);
     }
 
     addNewLi = function (newLi) {

@@ -12,27 +12,35 @@
     <header>
         <h1>WELCOME TO YOUR TO-DO LIST PAGE !</h1>
     </header>
-    <section id="fill_out">
+    <!-- <section id="fill_out">
         <form action="" id="my_form">
             <h2>Fill out your To-do list here:</h2>
             <input class="task_text" type="text" name="description" placeholder="할 일을 입력하세요."/>
             <a class="button" href="#">Add</a>
         </form>
-    </section>
+    </section> -->
     <section id="list_out">
         <div class="item_container">
-            <ul id="tasks">
-            <!--여기서부터는 동적으로 추가-->
+            <form class="js-toDoForm">
+                <h2>Fill out your To-do list here:</h2>
+                <input type="text" placeholder="할 일을 입력하세요."/>
+            </form>
+            <ul class="js-toDoList">
+                <!-- <li id="1">text</li> : 만들 것-->
+            </ul>
+            <!-- <ul id="tasks">
+            여기서부터는 동적으로 추가-->
                 <!-- <li class="list">
                     <input class="new_item" type="checkbox">
                     task text
                     <ion-icon name="trash-outline"></ion-icon>
                 </li> -->
 
-            </ul>
+            <!-- </ul> -->
         </div>
     </section>
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
+    <script src="todo.js"></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 </body>
 </html>
