@@ -86,6 +86,15 @@ input[type="checkbox"] {
   margin-left: 10rem;
 }
 
+input[type="checkbox"]:checked {
+  opacity: 1;
+}
+
+input[type="checkbox"]:checked + span {
+  opacity: 0.8;
+  text-decoration: line-through;
+}
+
 #list_out {
   width: 1000px;
   margin: 3rem auto;
@@ -125,12 +134,3 @@ ion-icon {
   margin: 0;
   color: #e58e26;
 }
-
-/* input[type="submit"] {
-    background-color: bisque;
-    color: rgb(163, 160, 160);
-  } */
-
-/* .invisible {
-    display: none;
-  } */

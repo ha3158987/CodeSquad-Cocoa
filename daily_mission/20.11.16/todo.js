@@ -1,10 +1,10 @@
 // global func ver.
 
+const TODOS_LOCALSTORAGE = 'toDos';  //로컬 스토리지에 value를 요청할 key 값
 const toDoForm = document.querySelector(".js-toDoForm"),
 toDoInput = toDoForm.querySelector("input"),
 addButton = toDoForm.querySelector("a"),
 toDoList = document.querySelector(".js-toDoList");
-const TODOS_LOCALSTORAGE = 'toDos';  //로컬 스토리지에 value를 요청할 key 값
 let toDos = [];
 
 addButton.addEventListener("click", handleSubmit);
@@ -25,24 +25,32 @@ function saveToDos() {
     localStorage.setItem(TODOS_LOCALSTORAGE, JSON.stringify(toDos));
 }
 
+function createEl(tagName){
+    return document.createElement(tagName);
+}
+
+function appendNode(parentNode, childElement) {
+    parentNode.appendChild(childElement);
+}
+
 function renderToDo(text){
-    const li = document.createElement("li");
-    const checkBox = document.createElement("input");
-    checkBox.type = "checkbox";
-    const labelName = document.createElement("label");
-    const span = document.createElement("span");
-    const delBtn = document.createElement("button");
+    const li = createEl("li");
+    const checkBox = createEl("input");
+    const span = createEl("span");
+    const delBtn = createEl("button");
     const newId = toDos.length + 1;
     const icon = `<ion-icon name="trash-outline"></ion-icon>`;
+
+    checkBox.type = "checkbox";
+    checkBox.classList.add("check");
     delBtn.innerHTML = icon;
-    span.innerText = text; //input text가 된다.
+    span.innerText = text; //input text
     delBtn.addEventListener("click", deleteToDo);
-    li.appendChild(checkBox);
-    li.appendChild(labelName);
-    li.appendChild(span);
-    li.appendChild(delBtn);
+    appendNode(li, checkBox);
+    appendNode(li, span);
+    appendNode(li, delBtn);
+    appendNode(toDoList, li);
     li.id = newId;
-    toDoList.appendChild(li);
     const toDoObj = {
         text: text,
         id: newId  //index는 0부터 시작하기 때문에 차례대로 넘버링.
