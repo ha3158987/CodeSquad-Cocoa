@@ -18,7 +18,7 @@ function deleteToDo (event) {
         return toDo.id !== parseInt(li.id);
     }); //id가 서로 일치가 안되는 것들만 다시 배열로 받음. 지워진 값들을 빼고!
     toDos = cleanToDos;
-    saveToDos(); //중요: replace한 다음에 save한다.
+    saveToDos();
 }
 
 function saveToDos() {
@@ -56,7 +56,7 @@ function renderToDo(text){
         id: newId  //index는 0부터 시작하기 때문에 차례대로 넘버링.
     }
     toDos.push(toDoObj);
-    saveToDos(); //로컬 스토리지에 저장
+    saveToDos();
 }
 
 function handleSubmit(event) {
@@ -82,7 +82,7 @@ function loadToDos () {
 }
 
 function init (){
-    loadToDos (); //로컬 스토리지로부터 저장된 toDos 객체를 불러옴.
+    loadToDos (); //새로고침 전 저장된 내용을 다시 불러옴.
     toDoForm.addEventListener("submit", handleSubmit);
 }
 

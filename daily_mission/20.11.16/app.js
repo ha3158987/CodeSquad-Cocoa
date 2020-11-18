@@ -5,7 +5,44 @@
 
 
 class modelController {
-    constructor () {
+
+    makeElement(tagName){
+        return document.createElement(tagName);
+    }
+
+    makeNewLi() { //li tag 만들기
+        const taskText = document.querySelector(".task_text").value;
+        const newItem = this.makeElement('li');
+        const checkBox = this.makeElement('input');
+        const trashIcon = this.makeElement('ion-icon');
+
+        checkBox.classList.add("new_item");
+        newItem.classList.add("list");
+        checkBox.type = "checkbox";
+        newItem.textContent = taskText;
+        trashIcon.name = "trash-outline";
+
+        newItem.appendChild(trashIcon);
+        newItem.appendChild(checkBox);
+
+        return newItem;
+    }
+}
+
+
+class View {
+
+    renderNewLi (newLi){
+        const parentNode = document.getElementById("tasks");
+        parentNode.appendChild(newLi);
+    }
+}
+
+
+class Controller {
+    constructor(view, model){
+        this.view = view;
+        this.model = model;
     }
 
     init() {
@@ -14,42 +51,26 @@ class modelController {
 
     addEvent() {
         const button = document.querySelector(".button");
-        button.addEventListener('click', this.makeNewLi.bind(this));
+        const inputText = document.querySelector(".task_text");
+        console.log("inputText", inputText.value);
+        console.log(typeof inputText);
+
+        button.addEventListener('click', inputText => {
+            if (inputText.value === "") {
+                alert("입력칸이 비었습니다. 할 일을 입력하세요.");
+            } else {
+                const newItem = model.makeNewLi();
+                this.view.renderNewLi(newItem);
+                inputText.value = "";
+            }
+        });
     }
-
-    makeNewLi() { //li tag 만들기
-        const newItem = document.createElement('li');
-        newItem.classList.add("list");
-
-        const taskText = document.querySelector(".task_text").value;
-        newItem.textContent = taskText;
-
-        //checkbox 추가
-        const checkBox = document.createElement('input');
-        checkBox.classList.add("new_item");
-        checkBox.type = "checkbox";
-        newItem.appendChild(checkBox);
-
-        //휴지통 아이콘 추가
-        const trashIcon = document.createElement('ion-icon');
-        trashIcon.name = "trash-outline";
-        newItem.appendChild(trashIcon);
-
-        console.log("newItem", newItem);
-        console.log("this", this);
-        this.addNewLi(newItem);
-    }
-
-    addNewLi(newLi) {
-        const parentNode = document.getElementById("tasks");
-        parentNode.appendChild(newLi);
-    }
-
-
 
 }
 
-const myToDO = new modelController();
-myToDO.init();
+const model = new modelController();
+const view = new View();
+const controller = new Controller(view, model);
+controller.init();
 
 
