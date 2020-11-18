@@ -4,7 +4,7 @@
 //1. 아이템 추가 (input 데이터가 계속 추가되기 때문에 생성자함수를 쓰기)
 
 
-class modelController {
+class Model {  //데이터만을 다뤄야 한다. 데이터 관리....
 
     makeElement(tagName){
         return document.createElement(tagName);
@@ -30,7 +30,7 @@ class modelController {
 }
 
 
-class View {
+class View { //UI, DOM관련
 
     renderNewLi (newLi){
         const parentNode = document.getElementById("tasks");
@@ -39,7 +39,7 @@ class View {
 }
 
 
-class Controller {
+class Controller { //li추가 등 (데이터를 실제로 갖고 있는 것이기 때문)
     constructor(view, model){
         this.view = view;
         this.model = model;
@@ -52,10 +52,8 @@ class Controller {
     addEvent() {
         const button = document.querySelector(".button");
         const inputText = document.querySelector(".task_text");
-        console.log("inputText", inputText.value);
-        console.log(typeof inputText);
 
-        button.addEventListener('click', inputText => {
+        button.addEventListener('click', () => {
             if (inputText.value === "") {
                 alert("입력칸이 비었습니다. 할 일을 입력하세요.");
             } else {
@@ -68,7 +66,7 @@ class Controller {
 
 }
 
-const model = new modelController();
+const model = new Model();
 const view = new View();
 const controller = new Controller(view, model);
 controller.init();
