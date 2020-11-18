@@ -7,8 +7,8 @@
 html {
   background-color: #fff;
   color: #555; /*웹페이지 전체 font 컬러*/
+  font-weight: 100;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 300;
   text-rendering: optimizeLegibility;
 }
 
@@ -19,12 +19,13 @@ header {
 }
 
 h1 {
-  font-size: 240%;
+  font-size: 40px;
+  font-weight: 100;
 }
 
-h1,
 h2 {
   font-weight: 100;
+  font-size: 30px;
 }
 
 h2::after {
@@ -32,16 +33,20 @@ h2::after {
   height: 1px;
   background-color: #e58e26;
   content: " ";
-  width: 150px;
+  width: 220px;
   margin: 0 auto; /* 센터링하기 */
   margin-top: 10px; /* h2랑 line 사이의 간격 */
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .button:link,
 .button:visited {
+  display: inline-block;
+  float: left;
   text-decoration: none;
-  padding: 0.4rem 30px;
+  padding: 0.5rem 30px;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
   background-color: #fff;
   color: #636e72;
   border: 1.5px solid #feca57;
@@ -61,19 +66,28 @@ h2::after {
 }
 
 #my_form {
-  width: 800px;
-  margin: 0px auto; /* 위아래가 0px, 좌우는 auto */
-  border: 1px solid rgb(163, 160, 160); /* 요소 크기를 볼 수 있게 임시로 보더에 색 지정 */
+  width: 900px;
+  margin: auto; /* 위아래가 0px, 좌우는 auto */
   text-align: center;
   padding: 1rem;
 }
 
 input {
+  display: inline-block;
+  float: left;
   width: 50%;
   margin: 0.6rem 1rem;
   padding: 0.7rem;
   border: 1px solid rgb(163, 160, 160);
   border-radius: 5px;
+}
+
+input[type="date"] {
+  display: inline-block;
+  width: 12rem;
+  height: 2.5rem;
+  cursor: pointer;
+  float: left;
 }
 
 input[type="checkbox"] {
@@ -134,12 +148,3 @@ ion-icon {
   margin: 0;
   color: #e58e26;
 }
-
-/* input[type="submit"] {
-  background-color: bisque;
-  color: rgb(163, 160, 160);
-} */
-
-/* .invisible {
-  display: none;
-} */
