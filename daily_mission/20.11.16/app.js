@@ -1,16 +1,22 @@
 //ES Class 사용 ver. - 만드는 중...
 
-/************************************1st module: todolist를 처리하는 Model Class*****************************/
-//1. 아이템 추가 (input 데이터가 계속 추가되기 때문에 생성자함수를 쓰기)
+/************************************1st module: todolist 데이터를 관리하는 Model Class*****************************/
+
+class Model {
+    //내용 입력 필요
+
+}
 
 
-class Model {  //데이터만을 다뤄야 한다. 데이터 관리....
+/************************************2nd module: DOM 및 UI를 핸들링하는 View Class*****************************/
+
+class View {
 
     makeElement(tagName){
         return document.createElement(tagName);
     }
 
-    makeNewLi() { //li tag 만들기
+    makeNewLi() {
         const taskText = document.querySelector(".task_text").value;
         const newItem = this.makeElement('li');
         const checkBox = this.makeElement('input');
@@ -24,16 +30,12 @@ class Model {  //데이터만을 다뤄야 한다. 데이터 관리....
         span.innerText = taskText;
         delBtn.innerHTML = trashIcon;
 
+        newItem.appendChild(checkBox);
         newItem.appendChild(span);
         newItem.appendChild(delBtn);
-        newItem.appendChild(checkBox);
 
-        return newItem;
+        this.renderNewLi (newItem);
     }
-}
-
-
-class View { //UI, DOM관련
 
     renderNewLi (newLi){
         const parentNode = document.getElementById("tasks");
@@ -42,7 +44,10 @@ class View { //UI, DOM관련
 }
 
 
-class Controller { //li추가 등 (데이터를 실제로 갖고 있는 것이기 때문)
+/******************************3rd module: Model과 View의 중간매개체 역할을 하는 Controller Class******************************/
+
+class Controller {
+
     constructor(view, model){
         this.view = view;
         this.model = model;
@@ -60,8 +65,7 @@ class Controller { //li추가 등 (데이터를 실제로 갖고 있는 것이�
             if (inputText.value === "") {
                 alert("입력칸이 비었습니다. 할 일을 입력하세요.");
             } else {
-                const newItem = model.makeNewLi();
-                this.view.renderNewLi(newItem);
+                this.view.makeNewLi();
                 inputText.value = "";
             }
         });
