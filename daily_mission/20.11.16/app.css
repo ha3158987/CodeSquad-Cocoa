@@ -77,11 +77,22 @@ input {
 }
 
 input[type="checkbox"] {
-  width: 10%;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #bcbcbc;
+  cursor: pointer;
   float: left;
-  margin-left: 5em;
-  vertical-align: middle;
-  background: #fff;
+  margin-left: 10rem;
+}
+
+input[type="checkbox"]:checked {
+  opacity: 1;
+}
+
+input[type="checkbox"]:checked + span {
+  opacity: 0.8;
+  text-decoration: line-through;
 }
 
 #list_out {
@@ -107,6 +118,15 @@ li {
   display: inline;
   width: 15rem;
   height: 1.5rem;
+}
+
+button {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 13rem;
+  border: none;
+  background-color: #fff;
+  float: right;
 }
 
 ion-icon {

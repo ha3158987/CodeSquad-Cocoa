@@ -14,15 +14,18 @@ class Model {  //데이터만을 다뤄야 한다. 데이터 관리....
         const taskText = document.querySelector(".task_text").value;
         const newItem = this.makeElement('li');
         const checkBox = this.makeElement('input');
-        const trashIcon = this.makeElement('ion-icon');
+        const span = this.makeElement('span');
+        const delBtn = this.makeElement('button');
+        const trashIcon = `<ion-icon name="trash-outline"></ion-icon>`;
 
         checkBox.classList.add("new_item");
         newItem.classList.add("list");
         checkBox.type = "checkbox";
-        newItem.textContent = taskText;
-        trashIcon.name = "trash-outline";
+        span.innerText = taskText;
+        delBtn.innerHTML = trashIcon;
 
-        newItem.appendChild(trashIcon);
+        newItem.appendChild(span);
+        newItem.appendChild(delBtn);
         newItem.appendChild(checkBox);
 
         return newItem;
