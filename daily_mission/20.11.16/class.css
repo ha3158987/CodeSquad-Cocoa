@@ -110,10 +110,9 @@ input[type="checkbox"]:checked + span {
 }
 
 #list_out {
-  width: 1000px;
+  width: 1420px;
   margin: 3rem auto;
   padding: 2rem;
-  text-align: justify;
 }
 
 .item_container {
