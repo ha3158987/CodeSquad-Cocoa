@@ -28,8 +28,9 @@ class View {
         return document.createElement(tagName);
     }
 
-    makeNewLi(text) {
+    makeNewLi(text, date) {
         const taskText = text;
+        const dueDate = date;
         const newItem = this.makeElement('li');
         const newId = toDoData.length + 1;
         const checkBox = this.makeElement('input');
@@ -41,7 +42,7 @@ class View {
         checkBox.classList.add("new_item");
         newItem.classList.add("list");
         checkBox.type = "checkbox";
-        span.innerText = taskText;
+        span.innerText = `${taskText} \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 ${dueDate}`;
         delBtn.innerHTML = trashIcon;
         delBtn.addEventListener("click", this.deleteToDo);
 
@@ -52,6 +53,7 @@ class View {
         newItem.id = newId;
         const newToDoObj = {
             text: taskText,
+            date: dueDate,
             id: newId
         }
         toDoData.push(newToDoObj);
@@ -93,22 +95,28 @@ class Controller {
         this.addEvent();
         const parsedToDoData = this.model.loadToDoData();
         parsedToDoData.forEach( eachObj => {
-            this.view.makeNewLi(eachObj.text);
+            this.view.makeNewLi(eachObj.text, eachObj.date);
         })
     }
 
     addEvent() {
         const button = document.querySelector(".button");
         const inputText = document.querySelector(".task_text");
+        const dueDate = document.querySelector(".due_date");
 
         button.addEventListener('click', () => {
             if (inputText.value === "") {
                 alert("입력칸이 비었습니다. 할 일을 입력하세요.");
+            } else if (dueDate.value === "") {
+                alert("마감일을 선택하세요.");
             } else {
                 const currentValue = document.querySelector(".task_text").value;
-                this.view.makeNewLi(currentValue);
+                const dueDateValue = document.querySelector(".due_date").value;   //sting으로 들어옴. 2020-11-19
+
+                this.view.makeNewLi(currentValue, dueDateValue);
                 this.model.saveNewData();
                 inputText.value = "";
+                dueDate.value = "";
             }
         });
 
