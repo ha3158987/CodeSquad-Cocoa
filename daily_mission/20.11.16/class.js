@@ -34,21 +34,26 @@ class View {
         const newItem = this.makeElement('li');
         const newId = toDoData.length + 1;
         const checkBox = this.makeElement('input');
-        const span = this.makeElement('span');
+        const taskSpan = this.makeElement('span');
+        const dateSpan = this.makeElement('span');
         const delBtn = this.makeElement('button');
         const trashIcon = `<ion-icon name="trash-outline"></ion-icon>`;
 
 
         checkBox.classList.add("new_item");
         newItem.classList.add("list");
+        taskSpan.classList.add("taskText");
+        dateSpan.classList.add("dueDate");
         checkBox.type = "checkbox";
-        span.innerText = `${taskText} \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 ${dueDate}`;
+        taskSpan.innerText = `${taskText}`;
+        dateSpan.innerText = `${dueDate}`;
         delBtn.innerHTML = trashIcon;
         delBtn.addEventListener("click", this.deleteToDo);
 
         newItem.appendChild(checkBox);
-        newItem.appendChild(span);
+        newItem.appendChild(taskSpan);
         newItem.appendChild(delBtn);
+        newItem.appendChild(dateSpan);
 
         newItem.id = newId;
         const newToDoObj = {

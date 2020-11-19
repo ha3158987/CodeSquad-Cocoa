@@ -132,6 +132,18 @@ li {
   height: 1.5rem;
 }
 
+.taskText {
+  float: left;
+  margin-left: 2rem;
+}
+
+.dueDate {
+  display: inline;
+  margin-right: 2rem;
+  float: right;
+  color: #e58e26;
+}
+
 button {
   width: 3rem;
   height: 3rem;
