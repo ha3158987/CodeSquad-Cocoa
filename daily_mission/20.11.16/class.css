@@ -135,6 +135,7 @@ li {
 .taskText {
   float: left;
   margin-left: 2rem;
+  margin-top: 0.5rem;
 }
 
 .dueDate {
@@ -142,6 +143,7 @@ li {
   margin-right: 2rem;
   float: right;
   color: #e58e26;
+  margin-top: 0.5rem;
 }
 
 button {
