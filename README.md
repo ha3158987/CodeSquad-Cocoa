@@ -23,4 +23,5 @@
 ### 3주차
 
 <a href="https://velog.io/@grinding_hannah/TIL-%EC%BD%94%EB%93%9C%EC%8A%A4%EC%BF%BC%EB%93%9C-%EC%BD%94%EC%BD%94%EC%95%84-3%EC%A3%BC%EC%B0%A8-Part-1" target="_blank">Mission 5: 웹 TO-DO 만들기</a>
-<a href="">Mission 6: 리팩토링과 학습정리</a>
+<br>
+<a href="https://velog.io/@grinding_hannah/TIL-%EC%BD%94%EB%93%9C%EC%8A%A4%EC%BF%BC%EB%93%9C-%EC%BD%94%EC%BD%94%EC%95%84-3%EC%A3%BC%EC%B0%A8-Part-2" target="_blank">Mission 6: 리팩토링과 학습정리</a>
