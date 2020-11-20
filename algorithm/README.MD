@@ -26,9 +26,9 @@
 
 ## Week 3
 
-1. hackerrank: <a href="#" target="_blank">solve me first</a>
-2. hackerrank: <a href="#" target="_blank">grading students</a>
-3. hackerrank: <a href="#" target="_blank">compare the triplets</a>
-4. hackerrank: <a href="#" target="_blank">a very big sum</a>
-5. hackerrank: <a href="#" target="_blank">time conversion</a>
-6. hackerrank: <a href="#" target="_blank">kangaroo</a>
+1. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/solve_me_first.js" target="_blank">solve me first</a>
+2. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/grading_students.js" target="_blank">grading students</a>
+3. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/compare_the_triplets.js" target="_blank">compare the triplets</a>
+4. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/a_very_big_sum.js" target="_blank">a very big sum</a>
+5. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/time_conversion.js" target="_blank">time conversion</a>
+6. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/number_line_jumps.js" target="_blank">kangaroo</a>
