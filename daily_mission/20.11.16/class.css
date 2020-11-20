@@ -153,6 +153,7 @@ button {
   border: none;
   background-color: #fff;
   float: right;
+  cursor: pointer;
 }
 
 ion-icon {

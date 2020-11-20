@@ -110,6 +110,7 @@ class Controller {
         const dueDate = document.querySelector(".due_date");
 
         button.addEventListener('click', () => {
+
             if (inputText.value === "") {
                 alert("입력칸이 비었습니다. 할 일을 입력하세요.");
             } else if (dueDate.value === "") {
@@ -133,5 +134,4 @@ const model = new Model();
 const view = new View();
 const controller = new Controller(view, model);
 controller.init();
-
 

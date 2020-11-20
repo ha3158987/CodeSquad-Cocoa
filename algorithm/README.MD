@@ -21,3 +21,14 @@
 2. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/68644" target="_blank">두 개 뽑아서 더하기</a>
 3. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/12901" target="_blank">2016년</a>
 4. 프로그래머스: <a href="https://programmers.co.kr/learn/courses/30/lessons/12928" target="_blank">약수의 합</a>
+
+<br>
+
+## Week 3
+
+1. hackerrank: <a href="#" target="_blank">solve me first</a>
+2. hackerrank: <a href="#" target="_blank">grading students</a>
+3. hackerrank: <a href="#" target="_blank">compare the triplets</a>
+4. hackerrank: <a href="#" target="_blank">a very big sum</a>
+5. hackerrank: <a href="#" target="_blank">time conversion</a>
+6. hackerrank: <a href="#" target="_blank">kangaroo</a>
