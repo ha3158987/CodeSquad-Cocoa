@@ -3,3 +3,39 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-weight: 100;
+  font-size: 40px;
+  font-family: "Black Han Sans", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+ion-icon {
+  font-size: 5rem;
+  margin-top: 3rem;
+  margin-left: 2rem;
+  color: #555;
+}
+
+.container {
+  width: 1420px;
+  padding: 0 2rem;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.show_box {
+  float: right;
+  margin-right: 5rem;
+  font-size: 1.5rem;
+  border: 0.3rem solid #555;
+  width: 400px;
+  height: 90px;
+  text-align: center;
+  cursor: pointer;
+}
