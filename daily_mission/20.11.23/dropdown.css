@@ -15,21 +15,47 @@ html {
 
 ion-icon {
   font-size: 5rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-left: 2rem;
   color: #555;
 }
 
 .container {
-  width: 1420px;
+  width: 1600px;
   padding: 0 2rem;
+}
+
+.inner-container-1 {
+  display: inline-block;
+  float: left;
+}
+
+.inner-container-2 {
+  display: inline-block;
+  float: right;
 }
 
 .title {
   font-size: 2rem;
 }
 
-.show_box {
+.instruction_message {
+  font-size: 0.7rem;
+  float: right;
+  margin-right: 6rem;
+  margin-bottom: 0.7rem;
+  color: #e15f41;
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+#show_box {
+  list-style-type: none;
   float: right;
   margin-right: 5rem;
   font-size: 1.5rem;
@@ -38,4 +64,25 @@ ion-icon {
   height: 90px;
   text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#show_box:hover {
+  background-color: #9aecdb;
+}
+
+.fruit-basket {
+  list-style-type: none;
+}
+
+.fruit {
+  border: 0.3rem solid #555;
+  font-size: 1rem;
+  margin: 0.2rem;
+  margin-top: 0.4rem;
+  background-color: #b8e994;
+}
+
+.invisible {
+  display: none;
 }
