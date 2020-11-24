@@ -86,6 +86,8 @@ ion-icon {
   margin-top: 0.4rem;
   background-color: #b8e994;
   text-align: center;
+  padding-top: 0.2rem;
+  cursor: pointer;
 }
 
 .invisible {
