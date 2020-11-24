@@ -8,10 +8,7 @@ function showFruits () {
     stopInstructionMessage();
     console.log("moseover되었습니다.");
 
-    const countOneSecond =  setTimeout(function () {
-        const UlTemplate = makeUlTemplate();
-        renderTemplate(UlTemplate, dropBox);
-    }, 1000);
+    const countOneSecond =  setTimeout(makeUlTemplate, 1000);
 
     dropBox.addEventListener('mouseout', function (){
         console.log("mouseout되었습니다.");
@@ -26,22 +23,16 @@ function stopInstructionMessage () {
 
 function makeUlTemplate () {
     console.log("renderTemplate이 실행되었습니다");
-    const fruitBasket = document.createElement('ul');
-    fruitBasket.classList.add("fruit-basket");
-    const template =
-    `<li class="fruit">포도</li>
-    <li class="fruit">사과</li>
-    <li class="fruit">오렌지</li>
-    <li class="fruit">바나나</li>
-    <li class="fruit">키위</li>
-    <li class="fruit">딸기</li>`
+    const fruitBasket = document.querySelector('.fruit-basket');
+    const fruitArr = ["포도", "사과", "오렌지", "바나나", "키위", "딸기"];
+    let template = '';
+
+    fruitArr.forEach(fruit => {
+        const innerTemplate = `<li class="fruit">${fruit}</li>`
+        template += innerTemplate;
+    })
+
     fruitBasket.innerHTML = template;
-    return fruitBasket;
-}
-
-function renderTemplate (template, parentNode) {
-
-    parentNode.appendChild(template);
 }
 
 /************************************************** mission 2. 마우스 이동정보 기록 *************************************************/

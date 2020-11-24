@@ -73,14 +73,19 @@ ion-icon {
 
 .fruit-basket {
   list-style-type: none;
+  margin-top: 3rem;
 }
 
 .fruit {
   border: 0.3rem solid #555;
+  width: 8rem;
+  height: 2rem;
   font-size: 1rem;
   margin: 0.2rem;
+  margin-left: 1rem;
   margin-top: 0.4rem;
   background-color: #b8e994;
+  text-align: center;
 }
 
 .invisible {
