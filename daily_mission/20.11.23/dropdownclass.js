@@ -1,8 +1,5 @@
 /*
 ES6 Class ver.
-1. 데이터를 처리하는 Model 클래스
-2. 화면에 렌더링을 하는 View 클래스
-3. Model과 View 클래스를 연결해주는 Controller 클래스
 */
 
 //util 만들기
@@ -12,7 +9,7 @@ const _ = {
     }
 }
 
-/*************************************************** Model Class ******************************************************* */
+/********************************************** 데이터를 처리하는 Model Class ******************************************************* */
 
 class Model {
 
@@ -29,14 +26,13 @@ class Model {
         // fruitBasket.innerHTML = template;
         return template;
     }
-
-
-
 }
 
-/*************************************************** View Class ******************************************************* */
+/************************************************ UI 렌더링을 하는 View Class ******************************************************* */
 
 class View {
+
+    // const fruitBasket = _.$(".fruit-basket");
 
     unShow(value) {
         value.classList.add("invisible");
@@ -48,22 +44,35 @@ class View {
     }
 
     showFruits(template, parentNode) {
+        const fruitBasket = _.$(".fruit-basket");
+        const container = _.$(".inner-container-2");
         this.stopInstructionMessage();
         console.log("moseover되었습니다.");
 
         const countOneSecond = setTimeout(() => {
-            const fruitBasket = _.$(".fruit-basket");
+            // const fruitBasket = _.$(".fruit-basket");
             fruitBasket.innerHTML = template;
         }, 1000);
 
-        parentNode.addEventListener('mouseout', function() {
+        parentNode.addEventListener('mouseleave', function() {
             clearTimeout(countOneSecond);
         });
+
+        container.addEventListener('mouseleave', this.hideFruits);
+    }
+
+    hideFruits() {
+        console.log("mouse가 떠났습니다.");
+
+        const fruits = document.querySelectorAll('li');
+            fruits.forEach(fruit => {
+            fruit.classList.add("invisible");
+        })
     }
 
 }
 
-/*************************************************** Controller Class ******************************************************* */
+/******************************************* Model과 View 클래스를 연결해주는 Controller Class ******************************************* */
 
 class Controller {
 
@@ -82,9 +91,7 @@ class Controller {
             const fruitTemplate = this.model.makeUITemplate();
             this.view.showFruits(fruitTemplate, dropBox);
         });
-
     }
-
 }
 
 const model = new Model();
