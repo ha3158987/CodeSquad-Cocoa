@@ -34,3 +34,5 @@ call stack와 event queue(callback queue라고도 한다)에 대해서 공부한
 <br>
 
 ## 실행결과
+
+<a href="https://codepen.io/letsBeCodeGenius/pen/rNLXGdp" target="_blank">코드펜에서 직접 실행해보기</a>
