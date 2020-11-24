@@ -2,7 +2,6 @@
 ES6 Class ver.
 */
 
-//util 만들기
 const _ = {
     $(cssSelector, base=document) {
         return base.querySelector(cssSelector);
@@ -14,7 +13,6 @@ const _ = {
 class Model {
 
     makeUITemplate () {
-        // const fruitBasket = _.$(".fruit-basket");
         const fruitArray = ["포도", "사과", "오렌지", "바나나", "키위", "딸기"];
         let template = ``;
 
@@ -23,7 +21,6 @@ class Model {
             template += innerTemplate;
         })
 
-        // fruitBasket.innerHTML = template;
         return template;
     }
 }
@@ -47,10 +44,8 @@ class View {
         const fruitBasket = _.$(".fruit-basket");
         const container = _.$(".inner-container-2");
         this.stopInstructionMessage();
-        console.log("moseover되었습니다.");
 
         const countOneSecond = setTimeout(() => {
-            // const fruitBasket = _.$(".fruit-basket");
             fruitBasket.innerHTML = template;
         }, 1000);
 
@@ -62,9 +57,8 @@ class View {
     }
 
     hideFruits() {
-        console.log("mouse가 떠났습니다.");
 
-        const fruits = document.querySelectorAll('li');
+        const fruits = document.querySelectorAll('.fruit');
             fruits.forEach(fruit => {
             fruit.classList.add("invisible");
         })

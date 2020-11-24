@@ -39,6 +39,20 @@ ion-icon {
   font-size: 2rem;
 }
 
+.data_box {
+  margin-left: 15rem;
+  margin-top: 2rem;
+  list-style-type: none;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.data_fruit {
+  margin-bottom: 0.3rem;
+}
+
 .instruction_message {
   font-size: 0.7rem;
   float: right;
@@ -84,10 +98,14 @@ ion-icon {
   margin: 0.2rem;
   margin-left: 1rem;
   margin-top: 0.4rem;
-  background-color: #b8e994;
   text-align: center;
   padding-top: 0.2rem;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fruit:hover {
+  background-color: #b8e994;
 }
 
 .invisible {
