@@ -12,24 +12,42 @@ const _ = {
 
 class Model {
 
-    makeUITemplate () {
-        const fruitArray = ["포도", "사과", "오렌지", "바나나", "키위", "딸기"];
+    countingTemplate = ``;
+
+    fruitData = {
+        "포도" : 0,
+        "사과" : 0,
+        "오렌지" : 0,
+        "바나나" : 0,
+        "키위" : 0,
+        "딸기" : 0
+    }
+
+    fruitArray = Object.keys(this.fruitData);
+
+    makeUITemplate() {
         let template = ``;
 
-        fruitArray.forEach(fruit => {
+        this.fruitArray.forEach(fruit => {
             const innerTemplate = `<li class="fruit">${fruit}</li>`
             template += innerTemplate;
         })
 
         return template;
     }
+
+    makeCountingTemplate(textContent) {
+            const innerData = `<li class="data_fruit">${textContent} : ${this.fruitData[textContent]}</li>`
+            console.log(innerData);
+            this.countingTemplate += innerData;
+
+        return this.countingTemplate;
+    }
 }
 
 /************************************************ UI 렌더링을 하는 View Class ******************************************************* */
 
 class View {
-
-    // const fruitBasket = _.$(".fruit-basket");
 
     unShow(value) {
         value.classList.add("invisible");
@@ -43,6 +61,7 @@ class View {
     showFruits(template, parentNode) {
         const fruitBasket = _.$(".fruit-basket");
         const container = _.$(".inner-container-2");
+
         this.stopInstructionMessage();
 
         const countOneSecond = setTimeout(() => {
@@ -54,6 +73,8 @@ class View {
         });
 
         container.addEventListener('mouseleave', this.hideFruits);
+
+        // fruitList.addEventListener('mouseenter', console.log("데이터를 보여달라"));
     }
 
     hideFruits() {
@@ -62,6 +83,14 @@ class View {
             fruits.forEach(fruit => {
             fruit.classList.add("invisible");
         })
+    }
+
+    renderCountingTemplate(template) {
+        let data = ``;
+        const dataBox = _.$(".data_box");
+
+        data += template;
+        dataBox.innerHTML = data;
     }
 
 }
@@ -81,10 +110,30 @@ class Controller {
 
     addEvent() {
         const dropBox = _.$("#show_box");
+
         dropBox.addEventListener('mouseenter', () => {
             const fruitTemplate = this.model.makeUITemplate();
             this.view.showFruits(fruitTemplate, dropBox);
+
+            this.addCountObj();
         });
+
+    }
+
+    addCountObj() {
+        const fruitList = document.querySelectorAll(".fruit");  //여기서 뭔가 계속 꼬임
+        console.dir(fruitList);
+
+        fruitList.forEach(fruit => {
+            console.log(fruit);
+
+            fruit.addEventListener('mouseenter', () => {
+
+                console.log("마우스가 과일 위에 올라갔습니다.")
+                const countingTemplate = this.model.makeCountingTemplate(fruit.innerHTML);  //"포도"
+                this.view.renderCountingTemplate(countingTemplate);
+            })
+        })
     }
 }
 
