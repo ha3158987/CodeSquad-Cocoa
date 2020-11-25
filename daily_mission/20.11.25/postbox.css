@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-weight: 100;
+  font-size: 40px;
+  /* font-family: "Black Han Sans", sans-serif; */
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  text-align: center;
+  border: 0.2rem sold #555;
+  margin-top: 3rem;
+}
+
+.wrapper {
+  width: 33rem;
+  height: 20rem;
+  margin-left: 2rem;
+  border: 0.2rem solid #555;
+}
+
+h1 {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.container {
+  width: 25rem;
+  height: 15rem;
+  margin: 1rem 1rem;
+
+  border: 0.1rem solid gray;
+}
+
+.check_post_box {
+  float: right;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+  width: 4rem;
+  height: 1.5rem;
+  border: 0.2rem solid #ff6b6b;
+  background-color: #ff6b6b;
+  border-radius: 5px;
+  font-size: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+}
