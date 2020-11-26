@@ -11,76 +11,89 @@ const countyNameArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let index = 4; //+1 하게 되면 총 마을 수를 구할 수 있음.
 let count = 1;
 
+function makeRandomNumberBetween (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
 class EACH_TOWN {
 
     constructor(name){
-        this.basicInfo.name = name;
-    }
-
-    basicInfo = {
-        name : "",
-        hasPostBox : this.createPostBox(),
-        sizeOfPostBox : 0,
-        child : []
+        // this.basicInfo.name = name,
+        this.name = name,
+        this.hasPostBox = this.createPostBox(),
+        this.sizeOfPostBox = this.setSizePostBox(),
+        this.child = []
     }
 
     createPostBox() {
-        let random = makeRandomNumberBetween(1, 10);
+        const random = makeRandomNumberBetween(1, 10);
         if (random > 6) {
             return true;
         }
         return false;
     }
-}
 
-function makeNewTown (name) {
-    index++;
-    return new EACH_TOWN(name);
-}
+    setSizePostBox() {
 
-function pushIntoArray (array, element) {
-    array.push(element);
-}
-
-function makeRandomNumberBetween (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-function buildOuterTown (){
-    const townA = makeNewTown("A");
-    const townB = makeNewTown("B");
-    const townC = makeNewTown("C");
-    const townD = makeNewTown("D");
-
-    pushIntoArray(treeMap, townA);
-    pushIntoArray(treeMap, townB);
-    pushIntoArray(treeMap, townC);
-    pushIntoArray(treeMap, townD);
-
-    treeMap.forEach(outerTown => {
-        const layer = makeRandomNumberBetween(1, 5);
-        makeNewChild(outerTown, layer);
-    })
-
-    console.dir(treeMap, {depth: null});
-}
-
-function makeNewChild (parentNode, layer) {
-
-    const newTown = makeNewTown(countyNameArr[index]);
-    parentNode.basicInfo.child.push(newTown);
-    // console.dir(parentNode.basicInfo);
-
-    if (count <= layer) {
-        count++;
-        makeNewChild(newTown, layer);
-    } else if (count > layer){
-        return;
+        if(this.hasPostBox){
+            const randomSize = makeRandomNumberBetween(1, 100);
+            return randomSize;
+        } else {
+            return "not available";
+        }
     }
 }
 
+class Map {
+
+    makeNewTown (name) {
+        index++;
+        return new EACH_TOWN(name);
+    }
+
+    pushIntoArray (array, element) {
+        array.push(element);
+    }
+
+    buildOuterTown (){
+        const townA = this.makeNewTown("A");
+        const townB = this.makeNewTown("B");
+        const townC = this.makeNewTown("C");
+        const townD = this.makeNewTown("D");
+
+        this.pushIntoArray(treeMap, townA);
+        this.pushIntoArray(treeMap, townB);
+        this.pushIntoArray(treeMap, townC);
+        this.pushIntoArray(treeMap, townD);
+
+        treeMap.forEach(outerTown => {
+            const layer = makeRandomNumberBetween(1, 5);
+            this.makeNewChild(outerTown, layer);
+        })
+
+        console.dir(treeMap, {depth: null});
+    }
+
+    makeNewChild (parentNode, layer) {
+
+        const newTown = this.makeNewTown(countyNameArr[index]);
+        parentNode.child.push(newTown);
+
+        if (count <= layer) {
+            count++;
+            this.makeNewChild(newTown, layer);
+        } else if (count > layer){
+            return;
+        }
+    }
+
+    countNumberOfPostBox () {}
+
+}
+
 function init () {
-    buildOuterTown();
+    const map = new Map();
+    map.buildOuterTown();
 }
 
 init();
