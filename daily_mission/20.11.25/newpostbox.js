@@ -19,9 +19,17 @@ class EACH_TOWN {
 
     basicInfo = {
         name : "",
-        hasPostBox : false,
+        hasPostBox : this.createPostBox(),
         sizeOfPostBox : 0,
         child : []
+    }
+
+    createPostBox() {
+        let random = makeRandomNumberBetween(1, 10);
+        if (random > 6) {
+            return true;
+        }
+        return false;
     }
 }
 
