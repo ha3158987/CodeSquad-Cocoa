@@ -66,10 +66,16 @@ class Map {
         const townC = this.makeNewTown("C");
         const townD = this.makeNewTown("D");
 
-        this.pushIntoArray(treeMap, townA);
-        this.pushIntoArray(treeMap, townB);
-        this.pushIntoArray(treeMap, townC);
-        this.pushIntoArray(treeMap, townD);
+        const outerTownArr = [townA, townB, townC, townD];
+
+        outerTownArr.forEach(outerTown => {
+            this.pushIntoArray(treeMap, outerTown);
+        });
+
+        // this.pushIntoArray(treeMap, townA);
+        // this.pushIntoArray(treeMap, townB);
+        // this.pushIntoArray(treeMap, townC);
+        // this.pushIntoArray(treeMap, townD);
 
         treeMap.forEach(outerTown => {
             const layer = makeRandomNumberBetween(1, 5);

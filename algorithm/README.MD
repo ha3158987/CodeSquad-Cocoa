@@ -32,3 +32,14 @@
 4. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/a_very_big_sum.js" target="_blank">a very big sum</a>
 5. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/time_conversion.js" target="_blank">time conversion</a>
 6. hackerrank: <a href="https://github.com/ha3158987/CodeSquad-Cocoa/blob/master/algorithm/week3/number_line_jumps.js" target="_blank">number line jumps</a>
+
+<br>
+
+## Week 4
+
+1. leetcode: <a href="https://leetcode.com/problems/two-sum/submissions/" target="_blank">Two Sum</a>
+2. leetcode: <a href="https://leetcode.com/problems/reverse-integer/submissions/" target="_blank">Reverse Integer</a>
+3. leetcode: <a href="https://leetcode.com/problems/palindrome-number/" target="_blank">Palindrome Number</a>
+4. leetcode:
+5. leetcode:
+6. leetcode:
