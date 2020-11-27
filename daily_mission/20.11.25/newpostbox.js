@@ -72,11 +72,6 @@ class Map {
             this.pushIntoArray(treeMap, outerTown);
         });
 
-        // this.pushIntoArray(treeMap, townA);
-        // this.pushIntoArray(treeMap, townB);
-        // this.pushIntoArray(treeMap, townC);
-        // this.pushIntoArray(treeMap, townD);
-
         treeMap.forEach(outerTown => {
             const layer = makeRandomNumberBetween(1, 5);
             this.makeNewChild(outerTown, layer);
