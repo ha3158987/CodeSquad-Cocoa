@@ -43,37 +43,37 @@ h1 {
 }
 
 .grid {
-  border: 2px solid rgb(233, 171, 88);
-  border-radius: 5px;
   /* background-color: rgba(233, 171, 88, 0.5); */
 }
 
 .one {
   grid-column: 1 / 2;
-  background-color: #f6e58d;
   opacity: 50%;
   grid-row: 1;
 }
 
 .two {
   grid-column: 2 / 2;
-  background-color: #ff7979;
   opacity: 50%;
   grid-row: 1;
 }
 
 .three {
   grid-column: 1 / 2;
-  background-color: #7ed6df;
   opacity: 50%;
   grid-row: 2;
 }
 
 .four {
   grid-column: 2 / 2;
-  background-color: #686de0;
   opacity: 50%;
   grid-row: 2;
+}
+
+.new_town {
+  border: 0.15rem solid #0984e3;
+  border-radius: 30px;
+  font-size: 0.5rem;
 }
 
 .check_post_box {
