@@ -117,29 +117,42 @@ class View {
         return document.querySelector(cssSelector);
     }
 
-    createRactangle(outerTown) {
+    createRactangle(outerTown, outerTownDiv) {
+
+        const childObj = outerTown.child[0];
         let rectangle = document.createElement("div");
         rectangle.classList.add("new_town");
-        rectangle.innerHTML = outerTown.name;
-        console.log(outerTown.name);
+        rectangle.innerHTML = childObj["name"];
+        outerTownDiv.appendChild(rectangle);
 
-        if (outerTown.child.length > 0) {
-            //자식 요소가 있으면 재귀호출  //debugging 필요. outerTown.child가 undefined로 나옴.
-            console.log("실행된다.")
-            this.createRactangle(outerTown.child);
+        if (childObj.child.length !== 0) {
+
+            return this.createRactangle(childObj, rectangle);
         }
         return rectangle;
     }
 
     showMap (grid) {
-        const grid1 = grid[0];
-        const grid2 = grid[1];
-        const grid3 = grid[2];
-        const grid4 = grid[3];
+        const newGridArr = [grid[0], grid[1], grid[2], grid[3]];
+        let idx = 0;
 
-        const newDivArr = treeMap.map(outerTown => {
-            console.log("outerTown", outerTown);
-            this.createRactangle(outerTown);
+        const arrOfOuterTownDiv = treeMap.map(outerTown => {
+            const outerTownDiv = document.createElement("div");
+            outerTownDiv.classList.add("new_town");
+            outerTownDiv.innerHTML = outerTown.name;
+
+            if (outerTown.child.length !== 0){
+                const newChild = this.createRactangle(outerTown, outerTownDiv);
+            }
+
+            return outerTownDiv;
+        })
+
+        console.log(arrOfOuterTownDiv);
+
+        arrOfOuterTownDiv.forEach(div => {
+            newGridArr[idx].appendChild(div);
+            idx++;
         })
     }
 }
@@ -161,7 +174,7 @@ class Controller {
 
     addUI () {
         const grid = document.querySelectorAll(".grid");
-        console.log(grid);
+        // console.log(grid);
         this.view.showMap(grid);
 
     }
