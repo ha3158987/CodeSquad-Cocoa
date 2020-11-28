@@ -113,21 +113,27 @@ class Map {
 
 class View {
 
-    // _ (cssSelector) {
-    //     return document.querySelector(cssSelector);
-    // } //안쓰이면 지우기
-
     createRactangle(outerTown, outerTownDiv) {
 
         const childObj = outerTown.child[0];
         let rectangle = document.createElement("div");
         rectangle.classList.add("new_town");
-        rectangle.innerHTML = childObj["name"];
+        this.createPostBox(rectangle, childObj);
         this.setRandomSizeAndLocation(rectangle);
         outerTownDiv.appendChild(rectangle);
 
         if (childObj.child.length !== 0) {
             return this.createRactangle(childObj, rectangle);
+        }
+    }
+
+    createPostBox(div, obj) {
+        const randomPick = makeRandomNumberBetween(0, 10);
+
+        if (obj.hasPostBox){
+            div.innerHTML =  `${obj.name} 📮`;
+        } else {
+            div.innerText = obj.name;
         }
     }
 
