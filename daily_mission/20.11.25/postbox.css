@@ -7,7 +7,7 @@
 html {
   background-color: #fff;
   color: #555;
-  font-weight: 100;
+  font-weight: 400;
   font-size: 40px;
   /* font-family: "Black Han Sans", sans-serif; */
   text-rendering: optimizeLegibility;
@@ -67,18 +67,23 @@ h1 {
 }
 
 .new_town {
-  border: 0.1rem solid #3c40c6;
+  border: 0.1rem solid#1e90ff;
   border-radius: 10px;
   font-size: 0.5rem;
   color: black;
   padding: 0.1rem;
 }
 
+.button_and_show {
+  display: inline-block;
+  float: right;
+}
+
 .check_post_box {
   float: right;
-  margin-right: 1.5rem;
+  margin-right: 1.1rem;
   margin-top: 1rem;
-  width: 4rem;
+  width: 4.5rem;
   height: 1.5rem;
   border: 0.2rem solid #ff6b6b;
   background-color: #ff6b6b;
@@ -86,4 +91,17 @@ h1 {
   font-size: 0.5rem;
   color: #fff;
   cursor: pointer;
+}
+
+.data {
+  height: 480px;
+  width: 200px;
+  margin-top: 4rem;
+  margin-right: 0.6rem;
+  font-weight: 400;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.postbox_available {
 }

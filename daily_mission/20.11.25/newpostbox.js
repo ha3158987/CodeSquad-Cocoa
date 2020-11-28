@@ -8,9 +8,10 @@ DOM은 생각하지 말고 자료구조만 만들것.
 View 클래스를 만들어서 DOM을 조작한다.
 UI에 렌더링 하는 작업을 수행한다.
 */
-const treeMap = [];   //모든 마을정보를 객체트리 형태의 자료구조로 가지고 있다. 요소는 최대 4개(가장 바깥 마을)를 가지고 있다.
+const treeMap = [];
+let townWithPostBox = [];
 const countyNameArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-let index = 4; //+1 하게 되면 총 마을 수를 구할 수 있음.
+let index = 4;
 let count = 1;
 
 function makeRandomNumberBetween (min, max) {
@@ -51,16 +52,16 @@ class EACH_TOWN {
 
 class Map {
 
-    makeNewTown (name) {
+    makeNewTown(name) {
         index++;
         return new EACH_TOWN(name);
     }
 
-    pushIntoArray (array, element) {
+    pushIntoArray(array, element) {
         array.push(element);
     }
 
-    buildOuterTown (){
+    buildOuterTown(){
         const townA = this.makeNewTown("A");
         const townB = this.makeNewTown("B");
         const townC = this.makeNewTown("C");
@@ -77,10 +78,9 @@ class Map {
             this.makeNewChild(outerTown, layer);
         })
 
-        console.dir(treeMap, {depth: null});
     }
 
-    makeNewChild (parentNode, layer) {
+    makeNewChild(parentNode, layer) {
 
         const newTown = this.makeNewTown(countyNameArr[index]);
         parentNode.child.push(newTown);
@@ -93,20 +93,6 @@ class Map {
         }
     }
 
-    countNumberOfPostBox () {
-        /* 미션 디테일:
-        1. 빨간색 우체통을 가진 마을은 '빨간색 테두리'로 표시된다.
-        2. 빨간색 우체통을 가진 마을정보를 텍스트로 표현해야 한다(name의 값)
-        3. 우체통은 각각 크기가 다르다, 크기가 순으로 정렬해서 정보를 표시한다.(sizeOfPostBox) */
-        let townWithPostBox = [];
-
-        //***treemap 탐색하기***
-        //treemap을 순회하면서 hasPostBox의 값이 'true'인지 확인한다.
-        //true일 경우 {마을이름, 우체통사이즈}를 담은 obj를 새로운 배열(townWithPostBox)에 추가한다. (없으면 return)
-        //child가 있는지(child배열의 길이가 0 인지 아닌지) 확인한 후, 있을경우 자식요소의 hasPostBox를 확인한다.
-        //자식요소의 hasPostBox가 true일 경우 해당객체의 {마을이름, 우체통사이즈}를 새로운 배열(townWithPostBox)에 추가한다.   <-- 여기서부터 반복
-    }
-
 }
 
 /***************************************************** DOM 핸들링과 UI 렌더링 역할을 하는 View 클래스 ********************************************************* */
@@ -114,9 +100,9 @@ class Map {
 class View {
 
     createRactangle(outerTown, outerTownDiv) {
-
         const childObj = outerTown.child[0];
         let rectangle = document.createElement("div");
+
         rectangle.classList.add("new_town");
         this.createPostBox(rectangle, childObj);
         this.setRandomSizeAndLocation(rectangle);
@@ -129,11 +115,19 @@ class View {
 
     createPostBox(div, obj) {
         const randomPick = makeRandomNumberBetween(0, 10);
+        const townName = obj.name;
 
         if (obj.hasPostBox){
-            div.innerHTML =  `${obj.name} 📮`;
+
+            let postBoxData = {
+                name: townName,
+                size: obj.sizeOfPostBox
+            }
+            townWithPostBox.push(postBoxData);
+            div.classList.add("postbox_available");//우편함이 있는 마을들은 클래스를 하나 더 줌.
+            div.innerHTML =  `${townName} 📮`;
         } else {
-            div.innerText = obj.name;
+            div.innerText = townName;
         }
     }
 
@@ -180,12 +174,62 @@ class View {
             return outerTownDiv;
         })
 
-        console.log(arrOfOuterTownDiv);
-
         arrOfOuterTownDiv.forEach(div => {
             newGridArr[idx].appendChild(div);
             idx++;
         })
+    }
+
+    showPostBoxData() {
+        let str = "";
+        let strInOrder = "";
+        const sortedArray = this.sortArray();
+        const data = document.querySelector(".data");
+
+        townWithPostBox.forEach(townObj => {
+            str += `${townObj.name}, `;
+        });
+
+        sortedArray.forEach(town => {
+            strInOrder += `${town}, `;
+        });
+
+        const textData = `${str}<br> 총 ${townWithPostBox.length}개의 마을이<br> 우체통을 가지고 있습니다. <br></br> 우체통의 크기는<br> ${strInOrder} 순 입니다.`
+        data.innerHTML = textData;
+        this.colorTownBorderRed();
+    }
+
+    sortArray(){
+        const arrayColon = JSON.parse(JSON.stringify(townWithPostBox)); //깊은 복사
+        let sizeInOrder = [];
+        const townInOrder = [];
+
+        arrayColon.forEach((town) => {
+            sizeInOrder.push(town.size);
+        });
+
+        sizeInOrder.sort(function(a, b){
+            return b - a;
+        });
+
+        sizeInOrder.forEach(el => {
+            for (let i = 0; i < arrayColon.length; i++){
+                if (arrayColon[i].size === el) {
+                    townInOrder.push(arrayColon[i].name);
+                }
+            }
+        })
+
+        return townInOrder;
+    }
+
+    colorTownBorderRed() {
+        const postBoxTowns = document.querySelectorAll(".postbox_available");
+
+        postBoxTowns.forEach(town => {
+            town.style.border = "0.1rem solid #ff6b6b";
+        })
+
     }
 }
 
@@ -199,18 +243,21 @@ class Controller {
         this.view = view;
     }
 
-    init () {
+    init() {
         this.map.buildOuterTown();
         this.addUI();
+        this.addButtonEvent();
     }
 
-    addUI () {
+    addUI() {
         const grid = document.querySelectorAll(".grid");
-        // console.log(grid);
         this.view.showMap(grid);
-
     }
 
+    addButtonEvent() {
+        const button = document.querySelector(".check_post_box");
+        button.addEventListener("click", this.view.showPostBoxData.bind(this.view));
+    }
 }
 
 const map = new Map;
