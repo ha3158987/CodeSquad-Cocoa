@@ -113,9 +113,9 @@ class Map {
 
 class View {
 
-    _ (cssSelector) {
-        return document.querySelector(cssSelector);
-    }
+    // _ (cssSelector) {
+    //     return document.querySelector(cssSelector);
+    // } //안쓰이면 지우기
 
     createRactangle(outerTown, outerTownDiv) {
 
@@ -123,26 +123,52 @@ class View {
         let rectangle = document.createElement("div");
         rectangle.classList.add("new_town");
         rectangle.innerHTML = childObj["name"];
+        this.setRandomSizeAndLocation(rectangle);
         outerTownDiv.appendChild(rectangle);
 
         if (childObj.child.length !== 0) {
-
             return this.createRactangle(childObj, rectangle);
         }
-        return rectangle;
     }
 
-    showMap (grid) {
+    getRandomMarginValue(min, max){
+        const margin = makeRandomNumberBetween(min, max) /10;
+        return margin;
+    }
+
+    getTrueOrFalse(){
+        const zeroOrOne = makeRandomNumberBetween(0, 1);
+        if (zeroOrOne === 0){
+            return false;
+        }
+        return true;
+    }
+
+    setRandomSizeAndLocation(newTown) {
+        const _ = newTown.style;
+
+        _.margin = `${this.getRandomMarginValue(0, 5)}rem ${this.getRandomMarginValue(0, 5)}rem ${this.getRandomMarginValue(0, 5)}rem ${this.getRandomMarginValue(0, 5)}rem`;
+
+        if (this.getTrueOrFalse()){
+            _.cssFloat = "right";
+        } else {
+            _.cssFloat = "left";
+        }
+
+    }
+
+    showMap(grid) {
         const newGridArr = [grid[0], grid[1], grid[2], grid[3]];
         let idx = 0;
 
         const arrOfOuterTownDiv = treeMap.map(outerTown => {
             const outerTownDiv = document.createElement("div");
+            this.setRandomSizeAndLocation(outerTownDiv);
             outerTownDiv.classList.add("new_town");
             outerTownDiv.innerHTML = outerTown.name;
 
             if (outerTown.child.length !== 0){
-                const newChild = this.createRactangle(outerTown, outerTownDiv);
+                this.createRactangle(outerTown, outerTownDiv);
             }
 
             return outerTownDiv;
