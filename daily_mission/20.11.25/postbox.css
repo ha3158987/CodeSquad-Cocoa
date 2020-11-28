@@ -94,7 +94,7 @@ h1 {
 }
 
 .data {
-  height: 480px;
+  height: 420px;
   width: 200px;
   margin-top: 4rem;
   margin-right: 0.6rem;
@@ -103,5 +103,16 @@ h1 {
   text-align: left;
 }
 
-.postbox_available {
+.refresh {
+  float: right;
+  margin-right: 1.1rem;
+
+  width: 4.5rem;
+  height: 1.5rem;
+  border: 0.2rem solid #1b9cfc;
+  background-color: #1b9cfc;
+  border-radius: 5px;
+  font-size: 0.5rem;
+  color: #fff;
+  cursor: pointer;
 }
