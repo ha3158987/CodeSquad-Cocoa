@@ -204,7 +204,7 @@ class View {
     }
 
     sortArray(){
-        const arrayColon = JSON.parse(JSON.stringify(townWithPostBox)); //깊은 복사
+        const arrayColon = JSON.parse(JSON.stringify(townWithPostBox));
         let sizeInOrder = [];
         const townInOrder = [];
 
