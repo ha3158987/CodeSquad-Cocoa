@@ -194,7 +194,7 @@ class View {
             strInOrder += `${town}, `;
         });
 
-        const textData = `${str}<br> 총 ${townWithPostBox.length}개의 마을이<br> 우체통을 가지고 있습니다. <br></br> 우체통의 크기는<br> ${strInOrder} 순 입니다.`
+        let textData = `${str}<br> 총 ${townWithPostBox.length}개의 마을이<br> 우체통을 가지고 있습니다. <br></br> 우체통의 크기는<br> ${strInOrder} 순 입니다.`
         if (sortedArray.length === 0){
             textData = `우체통을 가진 마을이 없습니다.`;
         }
