@@ -4,7 +4,7 @@
 그게 어렵다면 일단 배열에 객체를 요소로 가진 구조를 만들어볼 수 있다.[{}, {}, {}, {}, {}]
 DOM은 생각하지 말고 자료구조만 만들것.
 
-2. UI에 띄우기
+2. UI에 띄우기 (완료)
 View 클래스를 만들어서 DOM을 조작한다.
 UI에 렌더링 하는 작업을 수행한다.
 */
@@ -124,7 +124,7 @@ class View {
                 size: obj.sizeOfPostBox
             }
             townWithPostBox.push(postBoxData);
-            div.classList.add("postbox_available");//우편함이 있는 마을들은 클래스를 하나 더 줌.
+            div.classList.add("postbox_available");
             div.innerHTML =  `${townName} 📮`;
         } else {
             div.innerText = townName;
@@ -231,7 +231,7 @@ class View {
         const postBoxTowns = document.querySelectorAll(".postbox_available");
 
         postBoxTowns.forEach(town => {
-            town.style.border = "0.1rem solid #ff6b6b";
+            town.style.border = "0.1rem solid #e84118";
         })
 
     }

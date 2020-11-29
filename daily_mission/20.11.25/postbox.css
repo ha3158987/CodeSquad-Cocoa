@@ -24,6 +24,7 @@ body {
   height: 20rem;
   margin-left: 2rem;
   border: 0.2rem solid #555;
+  background-color: #fffaeb;
 }
 
 h1 {
@@ -40,6 +41,7 @@ h1 {
   grid-gap: 0.1rem;
   grid-auto-rows: minmax(7.4rem, auto);
   border: 0.1rem solid gray;
+  background-color: white;
 }
 
 .one {
@@ -93,6 +95,13 @@ h1 {
   cursor: pointer;
 }
 
+.check_post_box:hover {
+  background-color: #fff3f3;
+  border: 0.1rem solid #ff6b6b;
+  font-weight: 600;
+  color: #ff6b6b;
+}
+
 .data {
   height: 420px;
   width: 200px;
@@ -115,4 +124,11 @@ h1 {
   font-size: 0.5rem;
   color: #fff;
   cursor: pointer;
+}
+
+.refresh:hover {
+  background-color: #b2defe;
+  border: 0.1rem solid #1b9cfc;
+  font-weight: 600;
+  color: #1b9cfc;
 }
