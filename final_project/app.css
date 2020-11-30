@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+사용하는 color:
+#125F66
+#70E0EA
+#29D6E6
+#316266
+#21A6B3
+*/
+
+html {
+  background-color: #fff;
+  color: #555; /*웹페이지의 전체 font컬러*/
+  font-family: "Song Myung", serif;
+  font-weight: 300;
+  font-size: 20px;
+  text-rendering: optimizeLegibility; /*텍스트 디스플레이를 최적화하는 메소드*/
+}
+
+/*-------------------------------*/
+/*HEADER*/
+/*-------------------------------*/
+
+header {
+  background-image: linear-gradient(
+      rgba(248, 248, 248, 0.835),
+      rgba(209, 209, 209, 0.603)
+    ),
+    url(images/background2.jpg);
+  background-attachment: fixed;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.outer-border {
+  border: 2px solid #125f66;
+  position: absolute;
+  width: 95%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+h1 {
+  margin-top: 0;
+  font-weight: 400;
+  font-size: 350%;
+  color: #125f66;
+}
+
+h2 {
+  color: #125f66;
+  margin-bottom: 2.5rem;
+}
+
+h2::after {
+  display: block;
+  height: 3px;
+  background-color: #21a6b3;
+  content: " ";
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.start-button {
+  margin-top: 3rem;
+  font-weight: 100;
+  border: 1.5px solid;
+  display: inline-block;
+  padding: 10px 50px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.start-button:link,
+.start-button:visited {
+  color: #21a6b3;
+}
+
+.start-button:hover,
+.start-button:active {
+  background-color: #21a6b3;
+  border: 1.5px solid #21a6b3;
+  opacity: 80%;
+  color: #fff;
+}
+
+.navigation {
+  float: right;
+  list-style: none;
+  margin-top: 47px;
+  margin-right: 50px;
+}
+
+.navigation li {
+  display: inline-block;
+  margin-left: 40px;
+  font-size: 100%;
+  padding: 8px 0;
+}
+
+.navigation li a:link,
+.navigation li a:visited {
+  color: #316266;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s;
+  padding-bottom: 0.5rem;
+}
+
+.navigation li a:hover,
+.navigation li a:active {
+  border-bottom: 2px solid #316266;
+}
+
+.header-textbox {
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
