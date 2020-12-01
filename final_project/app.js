@@ -28,13 +28,13 @@ class Product {
             }
         }
 
-        const name = _.$(".product-name").value;
-        const categories = _.$(".product-category");
-        const selectedCategory = categories.options[categories.selectedIndex].value;
-        const usedDate = _.$(".date-used").value; //string으로 들어옴. "2020-12-01"
-        const rating = _.$(".rating");
-        const ratingValue = rating.options[rating.selectedIndex].value;
-        const review = _.$(".review").value;
+        let name = _.$(".product-name").value;
+        let categories = _.$(".product-category");
+        let selectedCategory = categories.options[categories.selectedIndex].value;
+        let usedDate = _.$(".date-used").value; //string으로 들어옴. "2020-12-01"
+        let rating = _.$(".rating");
+        let ratingValue = rating.options[rating.selectedIndex].value;
+        let review = _.$(".review").value;
 
         newObj.name = name;
         newObj.category = selectedCategory;
@@ -42,6 +42,8 @@ class Product {
         newObj.rating = ratingValue;
         newObj.review = review;
 
+
+        document.getElementById("input-product-info").reset();
 
         console.dir(newObj);
         return newObj;
