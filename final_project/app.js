@@ -13,6 +13,7 @@ UI에 렌더링 하는 작업을 수행한다.
 혹은 마우스 hover시 말풍선이 나오는 구조도 고려.(https://nanati.me/css-balloons-menu/)
 */
 const items = []; //추가된 모든 아이템의 정보를 객체 단위로 갖고 있을 배열.
+const images = [];
 
 /********************************  Product 클래스: 하나의 제품이 등록될 때마다 인스턴스를 생성 *******************************/
 
@@ -28,20 +29,19 @@ class Product {
             }
         }
 
-        let name = _.$(".product-name").value;
-        let categories = _.$(".product-category");
-        let selectedCategory = categories.options[categories.selectedIndex].value;
-        let usedDate = _.$(".date-used").value; //string으로 들어옴. "2020-12-01"
-        let rating = _.$(".rating");
-        let ratingValue = rating.options[rating.selectedIndex].value;
-        let review = _.$(".review").value;
+        const name = _.$(".product-name").value;
+        const categories = _.$(".product-category");
+        const selectedCategory = categories.options[categories.selectedIndex].value;
+        const usedDate = _.$(".date-used").value; //string으로 들어옴. "2020-12-01"
+        const rating = _.$(".rating");
+        const ratingValue = rating.options[rating.selectedIndex].value;
+        const review = _.$(".review").value;
 
         newObj.name = name;
         newObj.category = selectedCategory;
         newObj.date = usedDate;
         newObj.rating = ratingValue;
         newObj.review = review;
-
 
         document.getElementById("input-product-info").reset();
 
@@ -59,6 +59,7 @@ class Model {
         const newItem = new Product();
         const newItemObj = newItem.getProductInfo();
         items.push(newItemObj);
+
     }
 
 }
@@ -83,7 +84,19 @@ class Controller {
     }
 
     addEvent() {
+        let reader = new FileReader();
         const addButton = document.querySelector(".add-button");
+
+        reader.onload = (readerEvent) => {
+            document.querySelector(".preview").setAttribute('src', readerEvent.target.result);
+        };
+
+        document.querySelector(".product-img").addEventListener("change", (changeEvent) => {
+            let imgFile = changeEvent.target.files[0];
+            images.push(imgFile);
+            // console.dir(images);
+            reader.readAsDataURL(imgFile); //이미지 파일 읽어올 때
+        });
 
         addButton.addEventListener("click", this.model.makeNewProduct);
     }

@@ -167,7 +167,7 @@ textarea {
   border-top: 1px solid rgb(216, 216, 216);
   background-color: rgb(240, 249, 252);
   position: absolute;
-  height: 100%;
+  height: auto;
   width: 52%;
   margin-left: 24%;
   text-align: center;
@@ -192,8 +192,8 @@ legend {
 
 .add-container {
   background-color: rgb(244, 249, 250);
-  height: 12%;
   border-top: 1px solid rgb(216, 216, 216);
+  padding-bottom: 2rem;
 }
 
 .add-button {
@@ -219,6 +219,12 @@ legend {
   border: 1.5px solid #21a6b3;
   opacity: 80%;
   color: #fff;
+}
+
+.preview {
+  padding: 0.5rem 0.5rem;
+  height: auto;
+  width: 60%; /* 업로드 되는 이미지 미리보기 일정 사이즈로 고정 */
 }
 
 .temporary {
