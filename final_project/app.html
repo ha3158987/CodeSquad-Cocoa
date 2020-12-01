@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="app.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Song+Myung&Nanum+Gothic&family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Make-up Drawers</title>
@@ -22,12 +22,40 @@
             <div class="header-textbox">
                 <h2>애써 찾지마세요. </br> 모두 기억하고 있을게요.</h2>
                 <h1>나의 화장품 서랍장</h1>
-                <a class="start-button" href="#">시작하기</a>
+                <a class="start-button" href="#input">시작하기</a>
             </div>
         </div>
     </header>
-    <section class="main">
-
+    <section id="fill-out">
+        <form action="#" class="input-product-info">
+            <h2 class="instruction" id="input">사용한 제품정보를 입력해주세요.</h2>
+            <div class="inputs">
+                <fieldset><legend>제품명</legend><input class="product-name" type="text" name="product-name" placeholder="제품명을 입력하세요."/></fieldset>
+                <fieldset><legend>카테고리</legend><select name="product-category">
+                    <option value="skincare">스킨케어</option>
+                    <option value="make-up">메이크업</option>
+                    <option value="body">바디</option>
+                    <option value="hair">헤어</option>
+                </select></fieldset>
+                <fieldset><legend>사용한 날짜</legend><input class="date-used" type="date" name="date-used" placeholder="사용한 날짜를 선택하세요."/></fieldset>
+                <fieldset><legend>평점</legend><select name="rating">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select></fieldset>
+                <fieldset><legend>사용감/사용후기</legend><textarea name="review" rows="10" cols="40" placeholder="사용 시 느낀점, 특이점 등을 적어주세요. &#13;&#10;ex) 3일째 쓴 날부터 좁쌀여드름이 눈에 띄게 나아졌다."></textarea></fieldset>
+                <fieldset><legend>제품 이미지</legend><input class="product-img" type="file"/></fieldset>
+                <div class="add-container">
+                    <a class="add-button" href="#">추가하기</a>
+                </div>
+            </div>
+        </form>
+    </section>
+    <section>
+        <div class="temporary"></div>
     </section>
     <script src="app.js"></script>
 </body>

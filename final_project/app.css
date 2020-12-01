@@ -15,11 +15,16 @@
 
 html {
   background-color: #fff;
+  scroll-behavior: smooth;
   color: #555; /*웹페이지의 전체 font컬러*/
   font-family: "Song Myung", serif;
   font-weight: 300;
   font-size: 20px;
   text-rendering: optimizeLegibility; /*텍스트 디스플레이를 최적화하는 메소드*/
+}
+
+section {
+  padding: 120px 0;
 }
 
 /*-------------------------------*/
@@ -130,4 +135,93 @@ h2::after {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+/*-------------------------------*/
+/*MAIN SECTION*/
+/*-------------------------------*/
+
+#fill-out {
+  text-align: center;
+}
+
+.instruction {
+  color: #125f66;
+}
+
+input,
+select,
+textarea {
+  border: none;
+  font-size: 0.8rem;
+  font-family: "Nanum Gothic", sans-serif;
+  width: 85%;
+}
+
+.input-product-info {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.inputs {
+  border-top: 1px solid rgb(216, 216, 216);
+  background-color: rgb(240, 249, 252);
+  position: absolute;
+  height: 100%;
+  width: 52%;
+  margin-left: 24%;
+  text-align: center;
+}
+
+fieldset {
+  padding: 0.5rem 0.5rem;
+  margin: 2rem 12rem;
+  border: 1px solid #21a6b3;
+}
+
+legend {
+  text-align: left;
+  font-size: 0.8rem;
+  margin-left: 2rem;
+  color: #125f66;
+}
+
+.product-img {
+  font-weight: 100;
+}
+
+.add-container {
+  background-color: rgb(244, 249, 250);
+  /* border: 1px solid black; */
+  height: 12%;
+  border-top: 1px solid rgb(216, 216, 216);
+}
+
+.add-button {
+  font-weight: 100;
+  border: 1.5px solid;
+  display: inline-block;
+  padding: 10px 50px;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.add-button:link,
+.add-button:visited {
+  color: #21a6b3;
+  background-color: rgb(244, 249, 250);
+}
+
+.add-button:hover,
+.add-button:active {
+  background-color: #21a6b3;
+  border: 1.5px solid #21a6b3;
+  opacity: 80%;
+  color: #fff;
+}
+
+.temporary {
+  height: 1000px;
 }
