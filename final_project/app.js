@@ -68,7 +68,6 @@ class Model {
         const inputArray = newItem.getProductInfo();
 
         if(!this.allFormsAreFilled(inputArray)) {
-            console.log("fill out all the forms");
             return inputArray;
         }
 
@@ -79,6 +78,8 @@ class Model {
             items.push(newItemObj);
             images.push(imgFile);
             console.dir(images); //확인용
+            this.saveToLocalStorage();
+            console.dir(localStorage); //확인용
             document.getElementById("input-product-info").reset(); //form 전부 리셋.
         }
 
@@ -94,6 +95,11 @@ class Model {
         }
     }
 
+    saveToLocalStorage() {
+        localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('images', JSON.stringify(images));
+    }
+
 }
 
 /**************************************** View 클래스: UI 관련 작업들을 관리 *******************************************/
@@ -102,23 +108,24 @@ class View {
 
     showPreviewImage() {
         let reader = new FileReader();
+        let imgFile;
 
         reader.onload = (readerEvent) => {
             document.querySelector(".preview").setAttribute('src', readerEvent.target.result);
         };
 
         document.querySelector(".product-img").addEventListener("change", (changeEvent) => {
-            let imgFile = changeEvent.target.files[0];
+            imgFile = changeEvent.target.files[0];
             reader.readAsDataURL(imgFile); //이미지 파일 읽어올 때
-            return imgFile;
+            console.log(typeof imgFile); //object
+            return imgFile; //이미지 파일 오브젝트를 넘겨주려면?
         });
     }
 
     showErrorMsg(inputArray, imgFile) {
-        //배열에서 요소가 (!el)인 것들 모두 찾아서 에러메세지 throw 하기("___에 입력값을 선택해 주세요.")
-        console.log("inputArray", inputArray);
         const inputName = ["제품명은", "카테고리는", "사용한 날짜는", "평점은", "사용감/사용후기는"];
         const selector = ["#product-name", "#product-category", "#date-used", "#rating", "#review"];
+        // console.log(imgFile);
 
         if (!imgFile) {
             const imgInput = document.querySelector("#product-img");
@@ -137,12 +144,14 @@ class View {
                 const fieldset = document.querySelector(selector[idx]);
                 fieldset.appendChild(errorMessage);
             }
+            //else: append된 errorMessage가 있다면, 제거.
         })
 
     }
 
     removeErrorMsg () {
-
+        //사용자가 정보 수정 후 다시 '추가하기'버튼을 누르면 보여졌던 에러메세지가 사라져야 한다.
+        //업데이트 된 inputArray를 새로 받아와서 요소가 있는 부분은 메세지 없애야함.
     }
 }
 
@@ -163,10 +172,12 @@ class Controller {
         const addButton = document.querySelector(".add-button");
 
         const imgFile = this.view.showPreviewImage();
+        console.log(imgFile);
         addButton.addEventListener("click", this.eventCallback.bind(this, imgFile));
     }
 
     eventCallback(imgFile) {
+        // console.log(imgFile);
         const inputArray = this.model.makeNewProduct.call(this.model, imgFile);
         this.view.showErrorMsg(inputArray, imgFile);
     }
