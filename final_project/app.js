@@ -178,8 +178,8 @@ class Controller {
 
     eventCallback(imgFile) {
         // console.log(imgFile);
-        const inputArray = this.model.makeNewProduct.call(this.model, imgFile);
-        this.view.showErrorMsg(inputArray, imgFile);
+        const notFullyFilledInputArray = this.model.makeNewProduct.call(this.model, imgFile);
+        this.view.showErrorMsg(notFullyFilledInputArray, imgFile);
     }
 }
 
