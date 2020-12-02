@@ -66,11 +66,10 @@ class Model {
     makeNewProduct(imgFile){
         const newItem = new Product();
         const inputArray = newItem.getProductInfo();
-        console.log(inputArray);
 
         if(!this.allFormsAreFilled(inputArray)) {
             console.log("fill out all the forms");
-            //에러메세지 throw 하기("___에 입력값을 선택해 주세요.")
+            return inputArray;
         }
 
         //1) inputArray 에 undefined가 없고, 2) 이미지 파일이 업로드 되었을 시에만 makeNewProductObj를 실행
@@ -78,6 +77,8 @@ class Model {
 
             const newItemObj = newItem.makeNewProductObj(inputArray);
             items.push(newItemObj);
+            images.push(imgFile);
+            console.dir(images); //확인용
             document.getElementById("input-product-info").reset(); //form 전부 리셋.
         }
 
@@ -108,13 +109,41 @@ class View {
 
         document.querySelector(".product-img").addEventListener("change", (changeEvent) => {
             let imgFile = changeEvent.target.files[0];
-            // images.push(imgFile);
-            // console.dir(images);
             reader.readAsDataURL(imgFile); //이미지 파일 읽어올 때
             return imgFile;
         });
     }
 
+    showErrorMsg(inputArray, imgFile) {
+        //배열에서 요소가 (!el)인 것들 모두 찾아서 에러메세지 throw 하기("___에 입력값을 선택해 주세요.")
+        console.log("inputArray", inputArray);
+        const inputName = ["제품명은", "카테고리는", "사용한 날짜는", "평점은", "사용감/사용후기는"];
+        const selector = ["#product-name", "#product-category", "#date-used", "#rating", "#review"];
+
+        if (!imgFile) {
+            const imgInput = document.querySelector("#product-img");
+            const errorMessage = document.createElement("div");
+            errorMessage.classList.add("error-msg");
+            errorMessage.innerHTML = `제품 이미지를 선택해주세요.`
+            imgInput.appendChild(errorMessage);
+        }
+
+        inputArray.forEach((el, idx) => {
+            const errorMessage = document.createElement("div");
+            errorMessage.classList.add("error-msg");
+
+            if (!el) {
+                errorMessage.innerHTML = `${inputName[idx]} 필수정보 입니다.`;
+                const fieldset = document.querySelector(selector[idx]);
+                fieldset.appendChild(errorMessage);
+            }
+        })
+
+    }
+
+    removeErrorMsg () {
+
+    }
 }
 
 /*************************************** Controller 클래스: Model과 View의 중계역할 ***********************************/
@@ -134,7 +163,12 @@ class Controller {
         const addButton = document.querySelector(".add-button");
 
         const imgFile = this.view.showPreviewImage();
-        addButton.addEventListener("click", this.model.makeNewProduct.bind(this.model, imgFile));
+        addButton.addEventListener("click", this.eventCallback.bind(this, imgFile));
+    }
+
+    eventCallback(imgFile) {
+        const inputArray = this.model.makeNewProduct.call(this.model, imgFile);
+        this.view.showErrorMsg(inputArray, imgFile);
     }
 }
 

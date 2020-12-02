@@ -149,6 +149,12 @@ h2::after {
   color: #125f66;
 }
 
+.error-msg {
+  color: #ff7675;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 0.8rem;
+}
+
 input,
 select,
 textarea {
