@@ -137,6 +137,10 @@ class View {
       '#product-img'
     ];
 
+    this.createErrorMsg(inputArray, inputName, selector);
+  }
+
+  createErrorMsg(inputArray, inputName, selector){
     inputArray.forEach((el, idx) => {
       const errorMessage = document.createElement('div');
       const fieldset = document.querySelector(selector[idx]);
@@ -182,8 +186,8 @@ class Controller {
   addEvent() {
     const addButton = document.querySelector('.add-button');
     const parsedItems = this.model.loadFromLocalStorage(); // 저장된 아이템을 UI로 보여주기
-    console.log(parsedItems);
-    this.view.showPreviewImage(); //확인용
+    console.log(parsedItems); //확인용
+    this.view.showPreviewImage();
     addButton.addEventListener('click', this.eventCallback.bind(this));
   }
 
