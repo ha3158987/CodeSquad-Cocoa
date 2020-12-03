@@ -233,6 +233,6 @@ legend {
   width: 60%; /* 업로드 되는 이미지 미리보기 일정 사이즈로 고정 */
 }
 
-.temporary {
+.drawer-container {
   height: 1000px;
 }
