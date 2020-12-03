@@ -325,3 +325,70 @@ ion-icon {
 /*-------------------------------*/
 /*DETAIL PAGE*/
 /*-------------------------------*/
+
+#detail-info-container {
+  background-color: rgb(228, 246, 248, 0.9);
+  background-attachment: fixed;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  height: 100vh;
+}
+
+.border {
+  border: 2px solid #125f66;
+  position: absolute;
+  width: 95%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#product {
+  padding-top: 2rem;
+}
+
+.detail-informations {
+  border: 1px solid #21a6b3;
+  margin: 0rem 20rem;
+  padding: 0rem 0rem 2rem 0rem;
+  background-color: #fff;
+}
+
+#detail-img {
+  margin: 0;
+}
+
+.info-inner-container li {
+  list-style-type: none;
+  margin-bottom: 0.5rem;
+  color: #21a6b3;
+}
+
+.back-btn {
+  font-weight: 100;
+  border: 1.5px solid;
+  display: inline-block;
+  padding: 10px 50px;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.back-btn:link,
+.back-btn:visited {
+  color: #21a6b3;
+  background-color: #fff;
+}
+
+.back-btn:hover,
+.back-btn:active {
+  background-color: #21a6b3;
+  border: 1.5px solid #21a6b3;
+  opacity: 80%;
+  color: #fff;
+}

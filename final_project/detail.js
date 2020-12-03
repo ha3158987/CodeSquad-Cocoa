@@ -26,7 +26,7 @@ class ViewDetailPage {
     }
 
     getDetailInfos(currentItem){
-        let template = `<img src="${currentItem["image"]}"><li>카테고리: ${currentItem["category"]}</li><li>사용한 날짜: ${currentItem["date"]}</li><li>평점: ${currentItem["rating"]}</li><li>사용감/사용후기: ${currentItem["review"]}</li>`;
+        let template = `<img id="detail-img" src="${currentItem["image"]}"><li>카테고리: ${currentItem["category"]}</li><li>사용한 날짜: ${currentItem["date"]}</li><li>평점: ${currentItem["rating"]}/5 </li><li>사용감/사용후기: ${currentItem["review"]}</li><a class="back-btn" href="app.html#drawer">서랍장으로 돌아가기</a>`;
         return template;
     }
 }
