@@ -12,6 +12,7 @@
 ## UI 이미지 <br>
 
 - <커버 이미지> ![cover image](./images/UI.png) <br>
+- <이용방법 이미지> ![instruction image](./images/UI4.png) <br>
 - <입력페이지 이미지> ![form image](./images/UI1.png) <br>
 - <서랍장 이미지> ![drawer image](./images/UI2.png) <br>
-- <상세페이지 이미지> ![detail-page image](./images/UI3.png)
+- <상세페이지 이미지> ![detail-page image](./images/UI5.png)
