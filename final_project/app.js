@@ -12,7 +12,6 @@ UI에 렌더링 하는 작업을 수행한다.
 혹은 마우스 hover시 말풍선이 나오는 구조도 고려.(https://nanati.me/css-balloons-menu/)
 */
 let items = []; //추가된 모든 아이템의 정보를 객체 단위로 갖는 배열.
-let index = 0;
 
 /**************************** Product 클래스: input정보를 가져오고 제품이 등록될 때마다 인스턴스를 생성 ***************************/
 class Product {
@@ -31,12 +30,11 @@ class Product {
     const ratingValue = rating.options[rating.selectedIndex].value;
     const review = _.$('.review').value;
     const image = _.$('.preview').src;
-    // C:\fakepath\subquery_with.png
     const inputArray = [name, selectedCategory, usedDate, ratingValue, review, image];
     return inputArray;
   }
 
-  makeNewProductObj(inputArray) {
+  makeNewProductObj(inputArray, id) {
     const newObj = {};
     newObj.name = inputArray[0];
     newObj.category = inputArray[1];
@@ -44,8 +42,6 @@ class Product {
     newObj.rating = inputArray[3];
     newObj.review = inputArray[4];
     newObj.image = inputArray[5];
-    newObj.index = index; //현재 추가된 제품사진의 인덱스를 저장.
-    index++;
     return newObj;
   }
 }
@@ -53,7 +49,11 @@ class Product {
 /**************************************  Model 클래스: 제품 데이터를 관리 **********************************************/
 class Model {
 
-  makeNewProduct() {
+  exportEventTarget(items){
+
+  }
+
+  makeNewProduct(id) {
     const newItem = new Product();
     const inputArray = newItem.getProductInfo();
 
@@ -62,7 +62,7 @@ class Model {
     }
     //1) inputArray 에 undefined가 없고, 2) 이미지 파일이 업로드 되었을 시에만 makeNewProductObj를 실행
     if (this.allFormsAreFilled(inputArray)) {
-      const newItemObj = newItem.makeNewProductObj(inputArray);
+      const newItemObj = newItem.makeNewProductObj(inputArray, id);
       items.push(newItemObj);
       this.saveToLocalStorage();
       this.resetAllForm();
@@ -100,6 +100,13 @@ class Model {
 /**************************************** View 클래스: UI 관련 작업들을 관리 *******************************************/
 class View {
 
+  showDetailPage(items){
+    console.log(items);
+    const title = document.querySelector("#product");
+    console.log(title);
+
+  }
+
   showSavedItems(savedItems) { //local storage에서 가져온 items배열들의 요소(item)들을 UI drawer에서 보여주기.
     const container = document.querySelector(".img-grid");
     let innerContainer = ``;
@@ -110,10 +117,23 @@ class View {
       count++;
     })
     container.innerHTML = innerContainer;
+
+    this.addEventToImages(container);
+  }
+
+  addEventToImages(parentNode){
+    const lis = parentNode.childNodes;
+
+    lis.forEach((li, idx) => {
+      (li.childNodes[0].childNodes[0]).addEventListener("click", () => {
+        //click이 되면 이벤트가 일어난 이미지의 인덱스를 a tag의 href 값으로 넘겨준다.
+        (li.childNodes[0]).setAttribute("href", `detail.html?id=${idx}`);
+      });
+    })
   }
 
   makeImageContainingLiTag(item, count){
-    const liContainer = `<li class="inner-img-container"><img class="item-image${count}" src="${item["image"]}"><button class="delete-button"><ion-icon name="close-outline"></ion-icon></button><button class="more-button"><ion-icon name="ellipsis-vertical-outline"></ion-icon></button></li>`;
+    const liContainer = `<li class="inner-img-container"><a class="detail-page" href="detail.html"><img class="item-image${count}" src="${item["image"]}"></a><button class="delete-button"><ion-icon name="close-outline"></ion-icon></button><button class="more-button"><ion-icon name="ellipsis-vertical-outline"></ion-icon></button></li>`;
     return liContainer;
   }
 
@@ -202,7 +222,7 @@ class Controller {
   }
 
   eventCallback() {
-    const inputArray = this.model.makeNewProduct.call(this.model);
+    const inputArray = this.model.makeNewProduct.call(this.model, this.id);
 
     if (!this.model.allFormsAreFilled(inputArray)){
         this.view.showErrorMsg(inputArray); //빈 요소가 있는 경우에만 에러메세지 실행

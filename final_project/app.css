@@ -16,7 +16,7 @@
 html {
   background-color: #fff;
   scroll-behavior: smooth;
-  color: #555; /*웹페이지의 전체 font컬러*/
+  color: #555;
   font-family: "Song Myung", serif;
   font-weight: 300;
   font-size: 20px;
@@ -216,8 +216,6 @@ legend {
 
 .add-button:hover,
 .add-button:active {
-  /* color: #21a6b3; */
-  /* background-color: rgb(244, 249, 250); */
   border: 1.5px solid #21a6b3;
   opacity: 70%;
 }
@@ -226,7 +224,6 @@ legend {
 .add-button:visited {
   background-color: #21a6b3;
   border: 1.5px solid #21a6b3;
-  /* opacity: 80%; */
   color: #fff;
 }
 
@@ -258,7 +255,7 @@ legend {
 .preview {
   padding: 0.5rem 0.5rem;
   height: auto;
-  width: 60%; /* 업로드 되는 이미지 미리보기 일정 사이즈로 고정 */
+  width: 60%;
 }
 
 /*-------------------------------*/
@@ -324,3 +321,7 @@ ion-icon {
   color: #21a6b3;
   font-size: 1.3rem;
 }
+
+/*-------------------------------*/
+/*DETAIL PAGE*/
+/*-------------------------------*/
