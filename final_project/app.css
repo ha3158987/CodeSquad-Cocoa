@@ -138,11 +138,74 @@ h2::after {
 }
 
 /*-------------------------------*/
+/*INSTRUCTION SECTION*/
+/*-------------------------------*/
+
+#instuction {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+#instruction-outer-container {
+  height: 100vh;
+  background-image: linear-gradient(
+      rgba(248, 248, 248, 0.692),
+      rgba(209, 209, 209, 0.726)
+    ),
+    url(images/background1.jpg);
+  background-size: cover;
+}
+
+.upper-half {
+  height: 50vh;
+  text-align: center;
+}
+
+.instruction-message {
+  color: #14595f;
+  margin-top: 4rem;
+  padding-top: 4rem;
+}
+
+.smaller-instruction-message1 {
+  color: #125f66;
+  margin-top: 4rem;
+}
+
+.smaller-instruction-message2 {
+  color: #125f66;
+}
+
+.lower-half {
+  border: 1px solid rgb(216, 216, 216);
+  height: 50%;
+  background-color: rgb(240, 249, 252);
+}
+
+.button-container {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 9rem;
+  text-align: center;
+  border-left: 1px solid #14595f;
+  border-bottom: 1px solid #14595f;
+  border-right: 1px solid #14595f;
+}
+
+.sec-inst {
+  margin-right: 1rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
+
+/*-------------------------------*/
 /*FORM SECTION*/
 /*-------------------------------*/
 
 #fill-out {
   text-align: center;
+  height: 100vh;
 }
 
 .instruction {
@@ -298,6 +361,7 @@ legend {
   text-align: center;
   vertical-align: middle;
   background-color: #fff;
+  overflow: hidden;
 }
 
 img {
@@ -305,6 +369,12 @@ img {
   height: auto;
   margin-top: 3rem;
   vertical-align: top;
+  transform: scale(0.9);
+  transition: transform 0.8s;
+}
+
+img:hover {
+  transform: scale(1);
 }
 
 .delete-button {
