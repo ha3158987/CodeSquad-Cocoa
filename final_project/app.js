@@ -46,7 +46,6 @@ class Product {
     newObj.image = inputArray[5];
     newObj.index = index; //현재 추가된 제품사진의 인덱스를 저장.
     index++;
-    console.dir(newObj);
     return newObj;
   }
 }
@@ -57,7 +56,6 @@ class Model {
   makeNewProduct() {
     const newItem = new Product();
     const inputArray = newItem.getProductInfo();
-    console.log('inputArray', inputArray);
 
     if (!this.allFormsAreFilled(inputArray)) {
       return inputArray;
@@ -68,8 +66,6 @@ class Model {
       items.push(newItemObj);
       this.saveToLocalStorage();
       this.resetAllForm();
-      //deleteAllErrorMsg
-      console.dir(localStorage); //확인용
     }
     return inputArray;
   }
@@ -97,8 +93,7 @@ class Model {
   }
 
   resetAllForm (){
-    document.getElementById('input-product-info').reset(); //form 전부 리셋.
-    // inputArray[5] = null; //preview 이미지 없애기
+    location.reload();
   }
 }
 
@@ -106,21 +101,19 @@ class Model {
 class View {
 
   showSavedItems(savedItems) { //local storage에서 가져온 items배열들의 요소(item)들을 UI drawer에서 보여주기.
-    console.log(savedItems);
     const container = document.querySelector(".img-grid");
     let innerContainer = ``;
     let count = 0;
 
     savedItems.forEach(item => {
       innerContainer += this.makeImageContainingLiTag(item, count);
-      console.log(innerContainer);
       count++;
     })
     container.innerHTML = innerContainer;
   }
 
   makeImageContainingLiTag(item, count){
-    const liContainer = `<li class="inner-img-container"><img class="item-image${count}" src="${item["image"]}"></li>`;
+    const liContainer = `<li class="inner-img-container"><img class="item-image${count}" src="${item["image"]}"><button class="delete-button"><ion-icon name="close-outline"></ion-icon></button><button class="more-button"><ion-icon name="ellipsis-vertical-outline"></ion-icon></button></li>`;
     return liContainer;
   }
 
@@ -170,7 +163,6 @@ class View {
             fieldset.appendChild(errorMessage);
         }
       } else {
-          console.dir(fieldset.lastChild.classList);
         if (fieldset.lastChild.classList[0] === "error-msg") {
             this.removeErrorMsg(fieldset);
         }
@@ -179,17 +171,9 @@ class View {
   }
 
   removeErrorMsg(parentNode) {
-    //parentNode === fieldset
-    console.log(parentNode.lastChild);
     const errorMessage = parentNode.lastChild;
     parentNode.removeChild(errorMessage);
-
-    //문제1:이미지는 인풋값을 새로 넣어줘도 에러메세지가 사라지지 않음. preview 이미지도 없애야함.
-    //문제2:한꺼번에 여러항목을 수정하면 에러메세지가 한번에 사라지지 않음.
   }
-
-  //   removePreviewImage() {
-  //   }
 }
 /*************************************** Controller 클래스: Model과 View의 중계역할 ***********************************/
 class Controller {
