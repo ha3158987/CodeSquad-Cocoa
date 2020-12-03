@@ -11,5 +11,7 @@
 
 ## UI 이미지 <br>
 
-![UI1 img](./images/UI.png) <br>
-![UI2 img](./images/UI1.png)
+- <커버 이미지> ![cover image](./images/UI.png) <br>
+- <입력페이지 이미지> ![form image](./images/UI1.png) <br>
+- <서랍장 이미지> ![drawer image](./images/UI2.png) <br>
+- <상세페이지 이미지> ![detail-page image](./images/UI3.png)
