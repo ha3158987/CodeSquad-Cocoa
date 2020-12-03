@@ -307,8 +307,7 @@ img {
   vertical-align: top;
 }
 
-.delete-button,
-.more-button {
+.delete-button {
   width: 1.5rem;
   height: 1.5rem;
   background-color: #fff;
@@ -348,7 +347,11 @@ ion-icon {
 }
 
 #product {
-  padding-top: 2rem;
+  padding-top: 1.4rem;
+}
+
+#product::after {
+  margin-top: 1rem;
 }
 
 .detail-informations {
@@ -363,9 +366,32 @@ ion-icon {
 }
 
 .info-inner-container li {
+  width: 30rem;
+  height: 1.7rem;
+  display: inline-block;
   list-style-type: none;
-  margin-bottom: 0.5rem;
-  color: #21a6b3;
+  color: #125f66;
+}
+
+.more-button {
+  width: 1rem;
+  height: 1rem;
+  background-color: #fff;
+  border: none;
+  margin-left: 1.2rem;
+  cursor: pointer;
+}
+
+.check-button {
+  background-color: #fff;
+  border: none;
+}
+
+.edit-input {
+  margin-left: 2rem;
+  border: 1px solid #125f66;
+  width: 20rem;
+  height: 1.7rem;
 }
 
 .back-btn {
