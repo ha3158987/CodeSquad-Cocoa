@@ -30,7 +30,7 @@ class ViewDetailPage {
         return template;
     }
 }
-
+//<button class="more-button"><ion-icon name="ellipsis-vertical-outline"></ion-icon></button>
 
 const detailPage = new ViewDetailPage();
 detailPage.init();

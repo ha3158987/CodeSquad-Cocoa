@@ -9,7 +9,6 @@ View 클래스를 만들어서 DOM을 조작한다.
 UI에 렌더링 하는 작업을 수행한다.
 추가되는 이미지가 링크가 된다.
 3. 추가되는 각각의 이미지에 <a>링크를 걸어 해당 Product 인스턴스의 정보를 보여줄 수 있도록 한다.
-혹은 마우스 hover시 말풍선이 나오는 구조도 고려.(https://nanati.me/css-balloons-menu/)
 */
 let items = []; //추가된 모든 아이템의 정보를 객체 단위로 갖는 배열.
 
@@ -129,11 +128,21 @@ class View {
         //click이 되면 이벤트가 일어난 이미지의 인덱스를 a tag의 href 값으로 넘겨준다.
         (li.childNodes[0]).setAttribute("href", `detail.html?id=${idx}`);
       });
+
+      li.childNodes[1].addEventListener("click", this.deleteItem.bind(this, idx));
     })
+
+  }
+
+  deleteItem(idx){
+    const itemData = JSON.parse(localStorage["items"]);
+    itemData.splice(idx, 1);
+    localStorage.setItem('items', JSON.stringify(itemData));
+    location.reload();
   }
 
   makeImageContainingLiTag(item, count){
-    const liContainer = `<li class="inner-img-container"><a class="detail-page" href="detail.html"><img class="item-image${count}" src="${item["image"]}"></a><button class="delete-button"><ion-icon name="close-outline"></ion-icon></button><button class="more-button"><ion-icon name="ellipsis-vertical-outline"></ion-icon></button></li>`;
+    const liContainer = `<li class="inner-img-container"><a class="detail-page" href="detail.html"><img class="item-image${count}" src="${item["image"]}"></a><button class="delete-button"><ion-icon name="close-outline"></ion-icon></button></li>`;
     return liContainer;
   }
 
@@ -225,7 +234,7 @@ class Controller {
     const inputArray = this.model.makeNewProduct.call(this.model, this.id);
 
     if (!this.model.allFormsAreFilled(inputArray)){
-        this.view.showErrorMsg(inputArray); //빈 요소가 있는 경우에만 에러메세지 실행
+        this.view.showErrorMsg(inputArray);
     }
   }
 }
