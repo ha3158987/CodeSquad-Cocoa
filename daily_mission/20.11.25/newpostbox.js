@@ -157,11 +157,16 @@ class View {
 
     }
 
-    showMap(grid) {
-        const newGridArr = [grid[0], grid[1], grid[2], grid[3]];
-        let idx = 0;
+    paintQuadrantMap = (grid, arrOfOuterTownDiv) => {
+        const newGridArr = [...grid];
 
-        const arrOfOuterTownDiv = treeMap.map(outerTown => {
+        arrOfOuterTownDiv.forEach((div, index) => {
+            newGridArr[index].appendChild(div);
+        })
+    }
+
+    makeOuterTownDivArr = () => {
+        return treeMap.map(outerTown => {
             const outerTownDiv = document.createElement("div");
             this.setRandomSizeAndLocation(outerTownDiv);
             outerTownDiv.classList.add("new_town");
@@ -173,11 +178,12 @@ class View {
 
             return outerTownDiv;
         })
+    }
 
-        arrOfOuterTownDiv.forEach(div => {
-            newGridArr[idx].appendChild(div);
-            idx++;
-        })
+
+    showMap(grid) {
+        const arrOfOuterTownDiv = this.makeOuterTownDivArr()
+        this.paintQuadrantMap(grid, arrOfOuterTownDiv);
     }
 
     showPostBoxData() {
